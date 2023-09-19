@@ -1,5 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "docker-compose", "docker-compose.dcproj", "{1AE7FAD0-82A2-473C-B93D-FDF85C5ABA90}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Web", "src\CleanArchitecture.Web\CleanArchitecture.Web.csproj", "{CCAEF5DE-6092-489C-BBB4-199D65BC4ACF}"
 EndProject
 Global

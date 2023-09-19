@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
+  <PropertyGroup Label="Globals">
+    <ProjectVersion>2.1</ProjectVersion>
+    <DockerTargetOS>Linux</DockerTargetOS>
+    <ProjectGuid>1ae7fad0-82a2-473c-b93d-fdf85c5aba90</ProjectGuid>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
+    <DockerServiceName>cleanarchitectureapi</DockerServiceName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="docker-compose.yml" />
+    <None Include=".dockerignore" />
+    <None Include="Dockerfile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="docker-compose.debug.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </Content>
+    <Content Include="docker-compose.override.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </Content>
+    <Content Include="docker-compose.tests.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </Content>
+    <Content Include="Dockerfile.debug">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </Content>
+    <Content Include="Dockerfile.tests">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </Content>
+    <Content Include="docker_postgres_init.sql" />
+    <Content Include="run-tests.sh" />
+  </ItemGroup>
+</Project>
