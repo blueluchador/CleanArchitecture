@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  clean-architecture.web:
+    build:
+      context: ./
+      dockerfile: Dockerfile.debug
+      network: host
+      args:
+        DOTNET_CONFIG: Debug
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
