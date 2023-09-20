@@ -12,6 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddApiDocs();
 
+builder.Services.AddCustomProblemDetails();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
