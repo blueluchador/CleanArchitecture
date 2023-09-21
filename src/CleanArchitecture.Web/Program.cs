@@ -14,6 +14,8 @@ builder.Services.AddApiDocs();
 
 builder.Services.AddCustomProblemDetails();
 
+builder.Services.AddCustomHealthChecks(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
