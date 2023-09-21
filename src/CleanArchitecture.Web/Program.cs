@@ -1,4 +1,5 @@
 using CleanArchitecture.Web.Extensions;
+using CleanArchitecture.Web.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,10 @@ var app = builder.Build();
 app.UseOpenApi();
 
 app.UseCustomRequestLogging();
+
+app.UsePingEndpointMiddleware();
+
+// app.UseApiRequestHeadersMiddleware();
 
 app.UseHttpsRedirection();
 
