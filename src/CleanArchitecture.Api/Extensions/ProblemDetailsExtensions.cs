@@ -2,7 +2,7 @@ using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http.Extensions;
 
-namespace CleanArchitecture.Web.Extensions;
+namespace CleanArchitecture.Api.Extensions;
 
 public static class ProblemDetailsExtensions
 {

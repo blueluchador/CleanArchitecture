@@ -14,7 +14,7 @@ services:
     volumes:
       - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
     tty: true
-  clean-architecture.web:
+  clean-architecture.api:
     ports:
       - "5999:80"
     depends_on:
@@ -22,5 +22,5 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
-      - ./CleanArchitecture.Web/:/src/
+      - ./CleanArchitecture.Api/:/src/
     tty: true

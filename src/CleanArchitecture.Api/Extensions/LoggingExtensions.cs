@@ -1,7 +1,7 @@
 using Serilog;
 using Serilog.Events;
 
-namespace CleanArchitecture.Web.Extensions;
+namespace CleanArchitecture.Api.Extensions;
 
 public static class LoggingExtensions
 {

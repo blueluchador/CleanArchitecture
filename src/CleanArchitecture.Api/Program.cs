@@ -1,5 +1,5 @@
-using CleanArchitecture.Web.Extensions;
-using CleanArchitecture.Web.Middleware;
+using CleanArchitecture.Api.Extensions;
+using CleanArchitecture.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "CleanArchitecture.Web": {
+    "CleanArchitecture.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

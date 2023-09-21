@@ -5,13 +5,13 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["./src/CleanArchitecture.Web/CleanArchitecture.Web.csproj", "src/CleanArchitecture.Web/"]
-RUN dotnet restore "src/CleanArchitecture.Web/CleanArchitecture.Web.csproj"
+COPY ["./src/CleanArchitecture.Api/CleanArchitecture.Api.csproj", "src/CleanArchitecture.Api/"]
+RUN dotnet restore "src/CleanArchitecture.Api/CleanArchitecture.Api.csproj"
 COPY . .
-WORKDIR /src/src/CleanArchitecture.Web
-RUN dotnet build "CleanArchitecture.Web.csproj" -c Release -o /app/build
+WORKDIR /src/src/CleanArchitecture.Api
+RUN dotnet build "CleanArchitecture.Api.csproj" -c Release -o /app/build
 
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/build .
-ENTRYPOINT ["dotnet", "CleanArchitecture.Web.dll"]
+ENTRYPOINT ["dotnet", "CleanArchitecture.Api.dll"]

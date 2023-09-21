@@ -1,7 +1,7 @@
 using System.Reflection;
 using Microsoft.OpenApi.Models;
 
-namespace CleanArchitecture.Web.Extensions;
+namespace CleanArchitecture.Api.Extensions;
 
 public static class OpenApiExtensions
 {

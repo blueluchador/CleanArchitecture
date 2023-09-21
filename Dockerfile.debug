@@ -13,11 +13,11 @@ USER appuser
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY . .
-WORKDIR /src/src/AppSettingsManagement.Web
-RUN dotnet build "CleanArchitecture.Web.csproj" -c Debug -o /app/build
+WORKDIR /src/src/AppSettingsManagement.Api
+RUN dotnet build "CleanArchitecture.Api.csproj" -c Debug -o /app/build
 
 # Prepare the final image
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/build .
-ENTRYPOINT ["dotnet", "CleanArchitecture.Web.dll"]
+ENTRYPOINT ["dotnet", "CleanArchitecture.Api.dll"]

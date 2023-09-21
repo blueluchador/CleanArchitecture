@@ -1,4 +1,4 @@
-namespace CleanArchitecture.Web.Extensions;
+namespace CleanArchitecture.Api.Extensions;
 
 public static class HealthChecksExtensions
 {

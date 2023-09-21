@@ -1,4 +1,4 @@
-namespace CleanArchitecture.Web.Middleware;
+namespace CleanArchitecture.Api.Middleware;
 
 public static class MiddlewareExtensions
 {
