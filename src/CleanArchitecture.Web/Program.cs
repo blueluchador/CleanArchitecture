@@ -16,10 +16,18 @@ builder.Services.AddCustomProblemDetails();
 
 builder.Services.AddCustomHealthChecks(builder.Configuration);
 
+// TODO: Context Items Service
+
+// TODO: Data Repository Services - from persistence layer
+
+// TODO: Core Services - from application layer?
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseOpenApi();
+
+app.UseCustomRequestLogging();
 
 app.UseHttpsRedirection();
 
