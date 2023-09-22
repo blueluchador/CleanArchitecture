@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Domain", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Application", "src\CleanArchitecture.Application\CleanArchitecture.Application.csproj", "{130BAFB1-61A8-4454-B450-64A0E06DB9F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Infrastructure", "src\CleanArchitecture.Infrastructure\CleanArchitecture.Infrastructure.csproj", "{3481CC7A-609E-41D2-83CB-95A6D7531C5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,5 +28,9 @@ Global
 		{130BAFB1-61A8-4454-B450-64A0E06DB9F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{130BAFB1-61A8-4454-B450-64A0E06DB9F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{130BAFB1-61A8-4454-B450-64A0E06DB9F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3481CC7A-609E-41D2-83CB-95A6D7531C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3481CC7A-609E-41D2-83CB-95A6D7531C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3481CC7A-609E-41D2-83CB-95A6D7531C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3481CC7A-609E-41D2-83CB-95A6D7531C5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
