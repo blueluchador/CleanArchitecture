@@ -20,7 +20,7 @@ public class HelloWorldRepository : IHelloWorldRepository
 
     public async Task<HelloWorld?> GetHelloWorld(Guid helloWorldId)
     {
-        _logger.LogInformation("Get hello world, Hello World ID: {HelloWorldID}", helloWorldId);
+        _logger.LogInformation("Get hello world, HelloWorldID: {HelloWorldID}", helloWorldId);
         
         var @params = new { uuid = helloWorldId };
         
