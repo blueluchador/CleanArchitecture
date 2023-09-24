@@ -25,7 +25,6 @@ public class HelloWorldRepository : IHelloWorldRepository
         var @params = new { uuid = helloWorldId };
         
         using var conn = await _connectionFactory.CreateConnectionAsync();
-        return await conn.QuerySingleOrDefaultAsync<HelloWorld?>("", @params);
-        //return await conn.QuerySingleOrDefaultAsync<HelloWorld?>(Resource.GetHelloWorldQuery, @params);
+        return await conn.QuerySingleOrDefaultAsync<HelloWorld?>(Resource.GetHelloWorldQuery, @params);
     }
 }

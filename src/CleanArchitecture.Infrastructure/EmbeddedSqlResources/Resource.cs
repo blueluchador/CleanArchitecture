@@ -10,9 +10,10 @@ internal static class Resource
     
     private static string GetEmbeddedResource(string fileName)
     {
-        string filePath = $"CleanArchitecture.Infrastructure.EmbeddedSqlResources.SqlScripts.{fileName}";
-
-        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(filePath);
+        var assembly = Assembly.GetExecutingAssembly();
+        string resourceName = $"{assembly.GetName().Name}.EmbeddedSqlResources.SqlScripts.{fileName}";
+        
+        using var stream = assembly.GetManifestResourceStream(resourceName);
 
         if (stream == null)
         {

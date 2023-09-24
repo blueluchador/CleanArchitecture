@@ -13,19 +13,13 @@
       <PackageReference Include="Npgsql" Version="6.0.10" />
     </ItemGroup>
 
-
     <ItemGroup>
       <ProjectReference Include="..\CleanArchitecture.Application\CleanArchitecture.Application.csproj" />
     </ItemGroup>
 
-
-
-
-
     <ItemGroup>
       <None Remove="EmbeddedSqlResources\SqlScripts\get_hello_world.sql" />
-      <Resource Include="EmbeddedSqlResources\SqlScripts\get_hello_world.sql" />
+      <EmbeddedResource Include="EmbeddedSqlResources\SqlScripts\get_hello_world.sql" />
     </ItemGroup>
-
 
 </Project>
