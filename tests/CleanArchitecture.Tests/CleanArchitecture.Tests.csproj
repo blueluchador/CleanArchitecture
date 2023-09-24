@@ -29,4 +29,6 @@
       <ProjectReference Include="..\..\src\CleanArchitecture.Infrastructure\CleanArchitecture.Infrastructure.csproj" />
     </ItemGroup>
 
+
+
 </Project>
