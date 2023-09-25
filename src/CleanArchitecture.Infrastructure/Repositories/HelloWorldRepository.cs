@@ -17,12 +17,12 @@ public class HelloWorldRepository : IHelloWorldRepository
         _logger = logger;
     }
 
-    public async Task<HelloWorld?> GetHelloWorld(Guid helloWorldId)
+    public async Task<Person?> GetHelloWorld(Guid helloWorldId)
     {
         _logger.LogInformation("Get hello world, HelloWorldID: {HelloWorldID}", helloWorldId);
         
         var @params = new { uuid = helloWorldId };
 
-        return await _objectMapper.QuerySingleOrDefaultAsync<HelloWorld?>(Resource.GetHelloWorldQuery, @params);
+        return await _objectMapper.QuerySingleOrDefaultAsync<Person?>(Resource.GetPersonByIdSqlQuery, @params);
     }
 }

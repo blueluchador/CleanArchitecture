@@ -17,8 +17,8 @@ public class HelloWorldRepositoryTests
         var mock = Mock.Get(_objectMapper);
 
         mock.Setup(m =>
-                m.QuerySingleOrDefaultAsync<HelloWorld?>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
-            .ReturnsAsync(new HelloWorld());
+                m.QuerySingleOrDefaultAsync<Person?>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
+            .ReturnsAsync(new Person());
 
         // Act
         var repository = new HelloWorldRepository(_objectMapper, _logger);
@@ -26,7 +26,7 @@ public class HelloWorldRepositoryTests
 
         // Assert
         mock.Verify(
-            m => m.QuerySingleOrDefaultAsync<HelloWorld?>(It.IsNotNull<string>(), It.IsNotNull<object>(), null, null,
+            m => m.QuerySingleOrDefaultAsync<Person?>(It.IsNotNull<string>(), It.IsNotNull<object>(), null, null,
                 null), Times.Once);
         
         result.Should().NotBeNull("because the hello world row exists");
@@ -38,9 +38,9 @@ public class HelloWorldRepositoryTests
         // Arrange
         var mock = Mock.Get(_objectMapper);
 
-        HelloWorld? helloWorld = null;
+        Person? helloWorld = null;
         mock.Setup(m =>
-                m.QuerySingleOrDefaultAsync<HelloWorld?>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
+                m.QuerySingleOrDefaultAsync<Person?>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
             .ReturnsAsync(helloWorld);
 
         // Act
@@ -49,7 +49,7 @@ public class HelloWorldRepositoryTests
 
         // Assert
         mock.Verify(
-            m => m.QuerySingleOrDefaultAsync<HelloWorld?>(It.IsNotNull<string>(), It.IsNotNull<object>(), null, null,
+            m => m.QuerySingleOrDefaultAsync<Person?>(It.IsNotNull<string>(), It.IsNotNull<object>(), null, null,
                 null), Times.Once);
         
         result.Should().BeNull("because the hello world row does not exist");

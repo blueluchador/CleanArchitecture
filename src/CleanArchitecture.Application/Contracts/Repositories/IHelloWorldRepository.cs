@@ -4,5 +4,5 @@ namespace CleanArchitecture.Application.Contracts.Repositories;
 
 public interface IHelloWorldRepository
 {
-    Task<HelloWorld?> GetHelloWorld(Guid helloWorldId);
+    Task<Person?> GetHelloWorld(Guid helloWorldId);
 }

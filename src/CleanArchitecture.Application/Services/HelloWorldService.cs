@@ -22,6 +22,6 @@ public class HelloWorldService : IHelloWorldService
         var helloWorld = await _helloWorldRepository.GetHelloWorld(helloWorldId);
         return helloWorld == null
             ? new HelloWorldMessage { Message = "Hello, World!" }
-            : new HelloWorldMessage { Message = $"Hello, {helloWorld.Name}!" };
+            : new HelloWorldMessage { Message = $"Hello, {helloWorld.FirstName}!" };
     }
 }

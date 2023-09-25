@@ -1,8 +1,9 @@
 namespace CleanArchitecture.Domain.Entities;
 
-public class HelloWorld
+public class Person
 {
     public int Id { get; set; }
     public Guid Uuid { get; set; }
-    public string Name { get; set; } = null!;
+    public string? FirstName { get; set; }
+    public string LastName { get; set; } = null!;
 }

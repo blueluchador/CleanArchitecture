@@ -15,7 +15,7 @@ public class HelloWorldServicesTests
     {
         // Arrange
         var mock = Mock.Get(_helloWorldRepository);
-        mock.Setup(m => m.GetHelloWorld(It.IsAny<Guid>())).ReturnsAsync(new HelloWorld { Name = "Frankie" });
+        mock.Setup(m => m.GetHelloWorld(It.IsAny<Guid>())).ReturnsAsync(new Person { FirstName = "Frankie" });
         
         // Act
         var helloWorldService = new HelloWorldService(_helloWorldRepository, _logger);
@@ -32,7 +32,7 @@ public class HelloWorldServicesTests
     {
         // Arrange
         var mock = Mock.Get(_helloWorldRepository);
-        HelloWorld? helloWorld = null;
+        Person? helloWorld = null;
         mock.Setup(m => m.GetHelloWorld(It.IsAny<Guid>())).ReturnsAsync(helloWorld);
         
         // Act
