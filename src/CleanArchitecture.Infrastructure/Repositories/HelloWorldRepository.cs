@@ -1,20 +1,19 @@
 using CleanArchitecture.Application.Contracts.Repositories;
 using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Infrastructure.DataSourceConnectors;
 using CleanArchitecture.Infrastructure.EmbeddedSqlResources;
-using Dapper;
+using CleanArchitecture.Infrastructure.ORM;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Infrastructure.Repositories;
 
 public class HelloWorldRepository : IHelloWorldRepository
 {
-    private readonly IDbConnectionFactory _connectionFactory;
+    private readonly IObjectMapper _objectMapper;
     private readonly ILogger<HelloWorldRepository> _logger;
 
-    public HelloWorldRepository(IDbConnectionFactory connectionFactory, ILogger<HelloWorldRepository> logger)
+    public HelloWorldRepository(IObjectMapper objectMapper, ILogger<HelloWorldRepository> logger)
     {
-        _connectionFactory = connectionFactory;
+        _objectMapper = objectMapper;
         _logger = logger;
     }
 
@@ -23,8 +22,7 @@ public class HelloWorldRepository : IHelloWorldRepository
         _logger.LogInformation("Get hello world, HelloWorldID: {HelloWorldID}", helloWorldId);
         
         var @params = new { uuid = helloWorldId };
-        
-        using var conn = await _connectionFactory.CreateConnectionAsync();
-        return await conn.QuerySingleOrDefaultAsync<HelloWorld?>(Resource.GetHelloWorldQuery, @params);
+
+        return await _objectMapper.QuerySingleOrDefaultAsync<HelloWorld?>(Resource.GetHelloWorldQuery, @params);
     }
 }

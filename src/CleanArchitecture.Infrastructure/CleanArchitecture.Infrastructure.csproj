@@ -22,4 +22,5 @@
       <EmbeddedResource Include="EmbeddedSqlResources\SqlScripts\get_hello_world.sql" />
     </ItemGroup>
 
+
 </Project>
