@@ -20,11 +20,8 @@ public class HelloWorldService : IHelloWorldService
     {
         _logger.LogInformation("Get hello world message, HelloWorldId: {HelloWorldId}", helloWorldId);
         var helloWorld = await _helloWorldRepository.GetHelloWorld(helloWorldId);
-        if (helloWorld == null)
-        {
-            return new HelloWorldMessage { Message = "Hello, World!" };
-        }
-
-        return new HelloWorldMessage { Message = $"Hello, {helloWorld.Name}!" };
+        return helloWorld == null
+            ? new HelloWorldMessage { Message = "Hello, World!" }
+            : new HelloWorldMessage { Message = $"Hello, {helloWorld.Name}!" };
     }
 }
