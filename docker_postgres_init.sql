@@ -1,10 +1,11 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
-CREATE table hello_world
+CREATE table person
 (
     id serial,
     uuid uuid NOT NULL DEFAULT gen_random_uuid(),
-    name varchar(40) NOT NULL,
+    first_name varchar(40) NOT NULL,
+    last_name varchar(40),
 
     PRIMARY KEY (id)
 );

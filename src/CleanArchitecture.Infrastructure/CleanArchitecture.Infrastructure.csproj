@@ -18,8 +18,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="EmbeddedSqlResources\SqlScripts\get_hello_world.sql" />
-      <EmbeddedResource Include="EmbeddedSqlResources\SqlScripts\get_hello_world.sql" />
+      <None Remove="EmbeddedSqlResources\SqlScripts\get_person_by_id.sql" />
+      <EmbeddedResource Include="EmbeddedSqlResources\SqlScripts\get_person_by_id.sql" />
     </ItemGroup>
 
 
