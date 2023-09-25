@@ -7,14 +7,10 @@ namespace CleanArchitecture.Infrastructure.Repositories;
 
 public static class RepositoryExtensions
 {
-    public static IServiceCollection AddObjectMapper(this IServiceCollection services)
-    {
-        return services.AddSingleton<IObjectMapper, ObjectMapper>();
-    }
-    
     public static IServiceCollection AddHelloWorldRepository(this IServiceCollection services, string connectionString)
     {
-        return services.AddSingleton<IDbConnectionFactory>(_ => new HelloWorldConnectionFactory(connectionString))
+        return services
+            .AddSingleton<IObjectMapper>(_ => new HelloWorldObjectMapper(new NpgsqlConnectionFactory(connectionString)))
             .AddScoped<IHelloWorldRepository, HelloWorldRepository>();
     }
 }

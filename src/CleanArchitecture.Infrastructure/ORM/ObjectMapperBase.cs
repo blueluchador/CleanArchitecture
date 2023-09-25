@@ -4,15 +4,15 @@ using Dapper;
 
 namespace CleanArchitecture.Infrastructure.ORM;
 
-public class ObjectMapper : IObjectMapper
+public abstract class ObjectMapperBase
 {
     private readonly IDbConnectionFactory _connectionFactory;
 
-    public ObjectMapper(IDbConnectionFactory connectionFactory)
+    protected ObjectMapperBase(IDbConnectionFactory connectionFactory)
     {
         _connectionFactory = connectionFactory;
     }
-
+    
     public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null,
         int? commandTimeout = null, CommandType? commandType = null)
     {

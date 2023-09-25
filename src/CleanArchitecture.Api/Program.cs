@@ -20,8 +20,7 @@ builder.Services.AddCustomHealthChecks(builder.Configuration);
 
 // TODO: Context Items Service
 
-builder.Services.AddObjectMapper()
-    .AddHelloWorldRepository(builder.Configuration.GetConnectionString("HelloWorldDB"));
+builder.Services.AddHelloWorldRepository(builder.Configuration.GetConnectionString("HelloWorldDB"));
 
 // TODO: Core Services - from application layer?
 
