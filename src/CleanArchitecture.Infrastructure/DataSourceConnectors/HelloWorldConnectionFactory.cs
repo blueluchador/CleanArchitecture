@@ -3,11 +3,11 @@ using Npgsql;
 
 namespace CleanArchitecture.Infrastructure.DataSourceConnectors;
 
-public class NpgsqlConnectionFactory : IDbConnectionFactory
+public class HelloWorldConnectionFactory : IDbConnectionFactory
 {
     private readonly string _connectionString;
     
-    public NpgsqlConnectionFactory(string connectionString)
+    public HelloWorldConnectionFactory(string connectionString)
     {
         _connectionString = connectionString;
     }
