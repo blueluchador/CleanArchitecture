@@ -1,5 +1,6 @@
 using CleanArchitecture.Api.Extensions;
 using CleanArchitecture.Api.Middleware;
+using CleanArchitecture.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,8 @@ builder.Services.AddCustomHealthChecks(builder.Configuration);
 
 // TODO: Context Items Service
 
-// TODO: Data Repository Services - from persistence layer
+builder.Services.AddObjectMapper()
+    .AddHelloWorldRepository(builder.Configuration.GetConnectionString("HelloWorldDB"));
 
 // TODO: Core Services - from application layer?
 
