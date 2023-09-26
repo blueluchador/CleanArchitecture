@@ -24,7 +24,7 @@ public class HelloWorldServicesTests
         // Assert
         mock.Verify(m => m.GetHelloWorld(It.IsAny<Guid>()), Times.Once);
 
-        result.Message.Should().Be("Hello, Frankie!", "because the repository returns the name, 'Frankie'");
+        result.Message.Should().Be("Hello, Frankie!", "because the repository returns 'Frankie'");
     }
     
     [Fact]
