@@ -23,7 +23,7 @@ builder.Services.AddCustomHealthChecks(builder.Configuration);
 
 builder.Services.AddHelloWorldRepository(builder.Configuration.GetConnectionString("HelloWorldDB"));
 
-builder.Services.AddApplicatopmServices();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
@@ -38,7 +38,7 @@ app.UsePingEndpointMiddleware();
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 

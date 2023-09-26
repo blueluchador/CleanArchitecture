@@ -11,9 +11,9 @@ public static class OpenApiExtensions
         {
             opt.SwaggerDoc("v1", new OpenApiInfo
             {
-                Title = "Clean Architecture API",
+                Title = "Hello World API",
                 Version = "v1",
-                Description = "The web service for Clean Architecture."
+                Description = "The web service for Hello World."
             });
 
             opt.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
@@ -28,7 +28,7 @@ public static class OpenApiExtensions
             app.UseSwagger()
                 .UseReDoc(opt =>
                 {
-                    opt.DocumentTitle = "Clean Architecture API";
+                    opt.DocumentTitle = "Hello World API";
                     opt.SpecUrl = "/swagger/v1/swagger.json";
                 });
         }
