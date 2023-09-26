@@ -1,5 +1,6 @@
 using CleanArchitecture.Api.Extensions;
 using CleanArchitecture.Api.Middleware;
+using CleanArchitecture.Application.Services;
 using CleanArchitecture.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,7 +23,7 @@ builder.Services.AddCustomHealthChecks(builder.Configuration);
 
 builder.Services.AddHelloWorldRepository(builder.Configuration.GetConnectionString("HelloWorldDB"));
 
-// TODO: Core Services - from application layer?
+builder.Services.AddApplicatopmServices();
 
 var app = builder.Build();
 
