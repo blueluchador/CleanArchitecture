@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS test
+
+WORKDIR /src
+
+COPY ["./tests/CleanArchitecture.Tests/CleanArchitecture.Tests.csproj", "tests/CleanArchitecture.Tests/"]
+RUN dotnet restore "tests/CleanArchitecture.Tests/CleanArchitecture.Tests.csproj"
+
+COPY ["./tests/CleanArchitecture.IntegrationTests/CleanArchitecture.IntegrationTests.csproj", "tests/CleanArchitecture.IntegrationTests/"]
+RUN dotnet restore "tests/CleanArchitecture.IntegrationTests/CleanArchitecture.IntegrationTests.csproj"
+
+COPY . .
+
+WORKDIR /src/tests
+
+RUN dotnet build "CleanArchitecture.Tests/CleanArchitecture.Tests.csproj" -c Release
+RUN dotnet build "CleanArchitecture.IntegrationTests/CleanArchitecture.IntegrationTests.csproj" -c Release
+
+WORKDIR /src
+
+ENTRYPOINT ["sh", "-c", "./run-tests.sh"]
