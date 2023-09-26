@@ -20,7 +20,7 @@
     <Content Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </Content>
-    <Content Include="docker-compose.tests.yml">
+    <Content Include="docker-compose.tests2.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </Content>
     <Content Include="Dockerfile.debug">
@@ -32,5 +32,6 @@
     <Content Include="docker_postgres_init.sql" />
      <Content Include="docker_postgres_test_init.sql" />
     <Content Include="run-tests.sh" />
+    <Content Include="test.yml" />
   </ItemGroup>
 </Project>

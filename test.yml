@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres-db-test-harness:
+    image: postgres
+    restart: always
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=helloWorldTestDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_test_init.sql
+  app-settings-mgmt.tests:
+    build:
+      context: ./
+      dockerfile: Dockerfile.tests
+      network: host
+    depends_on:
+      - postgres-db-test-harness
+    tty: true
