@@ -1,2 +1,2 @@
-SELECT id, uuid, first_name, last_name FROM person
+SELECT id, uuid, first_name AS firstName, last_name AS lastName FROM person
 WHERE uuid = @uuid;

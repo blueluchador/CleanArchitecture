@@ -30,6 +30,7 @@
       <DependentUpon>Dockerfile</DependentUpon>
     </Content>
     <Content Include="docker_postgres_init.sql" />
+     <Content Include="docker_postgres_test_init.sql" />
     <Content Include="run-tests.sh" />
   </ItemGroup>
 </Project>

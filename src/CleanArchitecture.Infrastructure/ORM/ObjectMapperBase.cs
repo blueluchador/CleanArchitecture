@@ -17,6 +17,6 @@ public abstract class ObjectMapperBase
         int? commandTimeout = null, CommandType? commandType = null)
     {
         using var conn = await _connectionFactory.CreateConnectionAsync();
-        return await conn.QuerySingleOrDefaultAsync(sql, param, transaction, commandTimeout, commandType);
+        return await conn.QuerySingleOrDefaultAsync<T>(sql, param, transaction, commandTimeout, commandType);
     }
 }
