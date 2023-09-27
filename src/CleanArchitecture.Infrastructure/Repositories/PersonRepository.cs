@@ -6,18 +6,18 @@ using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Infrastructure.Repositories;
 
-public class HelloWorldRepository : IHelloWorldRepository
+public class PersonRepository : IPersonRepository
 {
     private readonly IObjectMapper _objectMapper;
-    private readonly ILogger<HelloWorldRepository> _logger;
+    private readonly ILogger<PersonRepository> _logger;
 
-    public HelloWorldRepository(IObjectMapper objectMapper, ILogger<HelloWorldRepository> logger)
+    public PersonRepository(IObjectMapper objectMapper, ILogger<PersonRepository> logger)
     {
         _objectMapper = objectMapper;
         _logger = logger;
     }
 
-    public async Task<Person?> GetHelloWorld(Guid helloWorldId)
+    public async Task<Person?> GetPersonById(Guid helloWorldId)
     {
         _logger.LogInformation("Get hello world, HelloWorldID: {HelloWorldID}", helloWorldId);
         

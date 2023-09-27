@@ -2,7 +2,7 @@ using CleanArchitecture.Domain.Entities;
 
 namespace CleanArchitecture.Application.Contracts.Repositories;
 
-public interface IHelloWorldRepository
+public interface IPersonRepository
 {
-    Task<Person?> GetHelloWorld(Guid helloWorldId);
+    Task<Person?> GetPersonById(Guid helloWorldId);
 }

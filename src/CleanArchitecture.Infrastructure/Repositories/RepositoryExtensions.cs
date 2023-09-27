@@ -11,8 +11,8 @@ public static class RepositoryExtensions
     public static IServiceCollection AddHelloWorldRepository(this IServiceCollection services, string connectionString)
     {
         return services
-            .AddScoped<IHelloWorldRepository>(p => new HelloWorldRepository(
+            .AddScoped<IPersonRepository>(p => new PersonRepository(
                 new HelloWorldObjectMapper(new NpgsqlConnectionFactory(connectionString)),
-                p.GetRequiredService<ILogger<HelloWorldRepository>>()));
+                p.GetRequiredService<ILogger<PersonRepository>>()));
     }
 }

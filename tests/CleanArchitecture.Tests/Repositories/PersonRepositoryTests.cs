@@ -5,10 +5,10 @@ using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Tests.Repositories;
 
-public class HelloWorldRepositoryTests
+public class PersonRepositoryTests
 {
     private readonly IObjectMapper _objectMapper = Mock.Of<IObjectMapper>();
-    private readonly ILogger<HelloWorldRepository> _logger = Mock.Of<ILogger<HelloWorldRepository>>();
+    private readonly ILogger<PersonRepository> _logger = Mock.Of<ILogger<PersonRepository>>();
 
     [Fact]
     public async Task GetHelloWorld_ReturnsSingleRow()
@@ -21,8 +21,8 @@ public class HelloWorldRepositoryTests
             .ReturnsAsync(new Person());
 
         // Act
-        var repository = new HelloWorldRepository(_objectMapper, _logger);
-        var result = await repository.GetHelloWorld(Guid.NewGuid());
+        var repository = new PersonRepository(_objectMapper, _logger);
+        var result = await repository.GetPersonById(Guid.NewGuid());
 
         // Assert
         mock.Verify(
@@ -44,8 +44,8 @@ public class HelloWorldRepositoryTests
             .ReturnsAsync(helloWorld);
 
         // Act
-        var repository = new HelloWorldRepository(_objectMapper, _logger);
-        var result = await repository.GetHelloWorld(Guid.NewGuid());
+        var repository = new PersonRepository(_objectMapper, _logger);
+        var result = await repository.GetPersonById(Guid.NewGuid());
 
         // Assert
         mock.Verify(
