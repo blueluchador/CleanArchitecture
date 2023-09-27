@@ -13,7 +13,7 @@ services:
       - "5432:5432"
     volumes:
       - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_test_init.sql
-  app-settings-mgmt.tests:
+  clean-architecture.tests:
     build:
       context: ./
       dockerfile: Dockerfile.tests

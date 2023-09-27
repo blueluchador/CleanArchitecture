@@ -53,7 +53,7 @@ pushd "${BASH_SOURCE%/*}"
 docker-compose -p $project "${compose_file_args[@]}" up -d --build --always-recreate-deps
 
 if [ "${run_tests-}" = true ]; then
-  docker-compose -p $project "${compose_file_args[@]}" logs -f app-settings-mgmt.tests
+  docker-compose -p $project "${compose_file_args[@]}" logs -f clean-architecture.tests
 else
   if [ "${launch_debug-}" = true ]; then
     echo 'You can now start your debugging session in VS Code. A browser tab will open when'
