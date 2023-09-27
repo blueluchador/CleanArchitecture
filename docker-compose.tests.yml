@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  postgres-db-test-harness:
+  postgres-db-test:
     image: postgres
     restart: always
     environment:
@@ -12,12 +12,12 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_test_init.sql
+      - ./docker_postgres_test_init.sql:/docker-entrypoint-initdb.d/docker_postgres_test_init.sql
   clean-architecture.tests:
     build:
       context: ./
       dockerfile: Dockerfile.tests
       network: host
     depends_on:
-      - postgres-db-test-harness
+      - postgres-db-test
     tty: true
