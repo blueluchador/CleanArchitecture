@@ -17,11 +17,18 @@ public class PersonRepository : IPersonRepository
         _logger = logger;
     }
 
-    public async Task<Person?> GetPersonById(Guid helloWorldId)
+    public async Task<IEnumerable<Person>> GetPersons()
     {
-        _logger.LogInformation("Get hello world, HelloWorldID: {HelloWorldID}", helloWorldId);
+        _logger.LogInformation("Get Persons from Hello World Database.");
+
+        return await _objectMapper.QueryAsync<Person>(Resource.GetPersonsSqlQuery);
+    }
+
+    public async Task<Person?> GetPersonById(Guid personId)
+    {
+        _logger.LogInformation("Get Person '{PersonId}' from Hello World Database", personId);
         
-        var @params = new { uuid = helloWorldId };
+        var @params = new { uuid = personId };
 
         return await _objectMapper.QuerySingleOrDefaultAsync<Person?>(Resource.GetPersonByIdSqlQuery, @params);
     }

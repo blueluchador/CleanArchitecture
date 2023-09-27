@@ -11,7 +11,27 @@ public class PersonRepositoryTests
     private readonly ILogger<PersonRepository> _logger = Mock.Of<ILogger<PersonRepository>>();
 
     [Fact]
-    public async Task GetHelloWorld_ReturnsSingleRow()
+    public async Task GetPersons_ReturnsPersons()
+    {
+        // Arrange
+        var mock = Mock.Get(_objectMapper);
+
+        mock.Setup(m => m.QueryAsync<Person>(It.IsAny<string>(), null, null, null, null))
+            .ReturnsAsync(new[] { new Person(), new Person(), new Person() });
+        
+        // Act
+        var repository = new PersonRepository(_objectMapper, _logger);
+        var result = (await repository.GetPersons()).ToArray();
+        
+        // Assert
+        mock.Verify(m => m.QueryAsync<Person>(It.IsNotNull<string>(), null, null, null, null), Times.Once);
+
+        result.Should().NotBeNull("because Person rows exist.");
+        result.Should().HaveCount(3, "because there exists 3 person rows.");
+    }
+
+    [Fact]
+    public async Task GetPersonById_ReturnsSingleRow()
     {
         // Arrange
         var mock = Mock.Get(_objectMapper);
@@ -29,19 +49,19 @@ public class PersonRepositoryTests
             m => m.QuerySingleOrDefaultAsync<Person?>(It.IsNotNull<string>(), It.IsNotNull<object>(), null, null,
                 null), Times.Once);
         
-        result.Should().NotBeNull("because the hello world row exists");
+        result.Should().NotBeNull("because the Person row exists");
     }
     
     [Fact]
-    public async Task GetHelloWorld_ReturnsNull()
+    public async Task GetPersonById_ReturnsNull()
     {
         // Arrange
         var mock = Mock.Get(_objectMapper);
 
-        Person? helloWorld = null;
+        Person? person = null;
         mock.Setup(m =>
                 m.QuerySingleOrDefaultAsync<Person?>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
-            .ReturnsAsync(helloWorld);
+            .ReturnsAsync(person);
 
         // Act
         var repository = new PersonRepository(_objectMapper, _logger);
@@ -52,6 +72,6 @@ public class PersonRepositoryTests
             m => m.QuerySingleOrDefaultAsync<Person?>(It.IsNotNull<string>(), It.IsNotNull<object>(), null, null,
                 null), Times.Once);
         
-        result.Should().BeNull("because the hello world row does not exist");
+        result.Should().BeNull("because the Person row does not exist");
     }
 }

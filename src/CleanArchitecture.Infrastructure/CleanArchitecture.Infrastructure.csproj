@@ -24,6 +24,8 @@
     <ItemGroup>
       <None Remove="EmbeddedSqlResources\SqlScripts\get_person_by_id.sql" />
       <EmbeddedResource Include="EmbeddedSqlResources\SqlScripts\get_person_by_id.sql" />
+      <None Remove="EmbeddedSqlResources\SqlScripts\get_persons.sql" />
+      <EmbeddedResource Include="EmbeddedSqlResources\SqlScripts\get_persons.sql" />
     </ItemGroup>
 
 

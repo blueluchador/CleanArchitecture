@@ -4,5 +4,7 @@ namespace CleanArchitecture.Application.Contracts.Repositories;
 
 public interface IPersonRepository
 {
-    Task<Person?> GetPersonById(Guid helloWorldId);
+    Task<IEnumerable<Person>> GetPersons();
+    
+    Task<Person?> GetPersonById(Guid personId);
 }
