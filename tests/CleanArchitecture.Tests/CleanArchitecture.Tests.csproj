@@ -29,7 +29,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\CleanArchitecture.Api\CleanArchitecture.Api.csproj" />
-      <ProjectReference Include="..\..\src\CleanArchitecture.TestFixtures\CleanArchitecture.TestFixtures.csproj" />
+      <ProjectReference Include="..\CleanArchitecture.TestFixtures\CleanArchitecture.TestFixtures.csproj" />
     </ItemGroup>
 
 </Project>

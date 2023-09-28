@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.IntegrationTests", "tests\CleanArchitecture.IntegrationTests\CleanArchitecture.IntegrationTests.csproj", "{00DEF254-28B5-4BD9-9CCD-5B66CF0B4191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.TestFixtures", "src\CleanArchitecture.TestFixtures\CleanArchitecture.TestFixtures.csproj", "{D7EFB8F8-C5EE-4964-BF13-C25A96CC77B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.TestFixtures", "tests\CleanArchitecture.TestFixtures\CleanArchitecture.TestFixtures.csproj", "{D7EFB8F8-C5EE-4964-BF13-C25A96CC77B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
