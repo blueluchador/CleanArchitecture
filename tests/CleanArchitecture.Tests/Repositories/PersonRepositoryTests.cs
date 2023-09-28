@@ -18,7 +18,7 @@ public class PersonRepositoryTests
         var mock = Mock.Get(_objectMapper);
 
         mock.Setup(m => m.QueryAsync<Person>(It.IsAny<string>(), null, null, null, null))
-            .ReturnsAsync(new[] { new Person(), new Person(), new Person() });
+            .ReturnsAsync(Fake.CreateMany<Person>(3));
         
         // Act
         var repository = new PersonRepository(_objectMapper, _logger);
@@ -39,7 +39,7 @@ public class PersonRepositoryTests
 
         mock.Setup(m =>
                 m.QuerySingleOrDefaultAsync<Person?>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
-            .ReturnsAsync(new Person());
+            .ReturnsAsync(Fake.Create<Person>());
 
         // Act
         var repository = new PersonRepository(_objectMapper, _logger);
@@ -58,11 +58,10 @@ public class PersonRepositoryTests
     {
         // Arrange
         var mock = Mock.Get(_objectMapper);
-
-        Person? person = null;
+        
         mock.Setup(m =>
                 m.QuerySingleOrDefaultAsync<Person?>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
-            .ReturnsAsync(person);
+            .ReturnsAsync(Fake.CreateNull<Person>());
 
         // Act
         var repository = new PersonRepository(_objectMapper, _logger);
