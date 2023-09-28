@@ -1,5 +1,6 @@
 using System.Net;
 using CleanArchitecture.Application.DTOs;
+using CleanArchitecture.IntegrationTests.Extensions;
 using CleanArchitecture.IntegrationTests.TestFixtures;
 
 namespace CleanArchitecture.IntegrationTests.ApiEndpoints;

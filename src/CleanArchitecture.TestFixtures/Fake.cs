@@ -1,7 +1,7 @@
 using AutoFixture;
 using AutoFixture.Dsl;
 
-namespace CleanArchitecture.Tests;
+namespace CleanArchitecture.TestFixtures;
 
 public static class Fake
 {

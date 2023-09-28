@@ -2,6 +2,7 @@ using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.EmbeddedSqlResources;
 using CleanArchitecture.Infrastructure.ORM;
 using CleanArchitecture.Infrastructure.Repositories;
+using CleanArchitecture.TestFixtures;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Tests.Repositories;

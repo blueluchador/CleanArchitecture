@@ -31,4 +31,5 @@
       <ProjectReference Include="..\..\src\CleanArchitecture.Api\CleanArchitecture.Api.csproj" />
     </ItemGroup>
 
+
 </Project>

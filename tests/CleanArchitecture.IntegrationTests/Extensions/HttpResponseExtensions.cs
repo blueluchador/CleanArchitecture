@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace CleanArchitecture.IntegrationTests.TestFixtures;
+namespace CleanArchitecture.IntegrationTests.Extensions;
 
 public static class HttpResponseExtensions
 {
