@@ -10,7 +10,6 @@
 
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="6.12.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.22" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
           <PrivateAssets>all</PrivateAssets>
@@ -29,6 +28,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\CleanArchitecture.Api\CleanArchitecture.Api.csproj" />
+      <ProjectReference Include="..\CleanArchitecture.TestFixtures\CleanArchitecture.TestFixtures.csproj" />
     </ItemGroup>
 
 

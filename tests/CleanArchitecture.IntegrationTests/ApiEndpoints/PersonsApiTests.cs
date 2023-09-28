@@ -1,15 +1,15 @@
 using System.Net;
 using CleanArchitecture.Application.DTOs;
 using CleanArchitecture.IntegrationTests.Extensions;
-using CleanArchitecture.IntegrationTests.TestFixtures;
+using CleanArchitecture.TestFixtures;
 
 namespace CleanArchitecture.IntegrationTests.ApiEndpoints;
 
-public class PersonsApiTests : IClassFixture<CustomApplicationFactory>
+public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
 {
     private readonly HttpClient _client;
 
-    public PersonsApiTests(CustomApplicationFactory factory)
+    public PersonsApiTests(CustomWebApplicationFactory factory)
     {
         _client = factory.CreateClient();
     }
