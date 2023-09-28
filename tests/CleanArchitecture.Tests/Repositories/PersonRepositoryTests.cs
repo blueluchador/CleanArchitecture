@@ -1,4 +1,5 @@
 using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Infrastructure.EmbeddedSqlResources;
 using CleanArchitecture.Infrastructure.ORM;
 using CleanArchitecture.Infrastructure.Repositories;
 using Microsoft.Extensions.Logging;
@@ -24,7 +25,7 @@ public class PersonRepositoryTests
         var result = (await repository.GetPersons()).ToArray();
         
         // Assert
-        mock.Verify(m => m.QueryAsync<Person>(It.IsNotNull<string>(), null, null, null, null), Times.Once);
+        mock.Verify(m => m.QueryAsync<Person>(Resource.GetPersonsSqlQuery, null, null, null, null), Times.Once);
 
         result.Should().NotBeNull("because Person rows exist.");
         result.Should().HaveCount(3, "because there exists 3 person rows.");
@@ -46,8 +47,8 @@ public class PersonRepositoryTests
 
         // Assert
         mock.Verify(
-            m => m.QuerySingleOrDefaultAsync<Person?>(It.IsNotNull<string>(), It.IsNotNull<object>(), null, null,
-                null), Times.Once);
+            m => m.QuerySingleOrDefaultAsync<Person?>(Resource.GetPersonByIdSqlQuery, It.IsNotNull<object>(), null,
+                null, null), Times.Once);
         
         result.Should().NotBeNull("because the Person row exists");
     }
@@ -69,8 +70,8 @@ public class PersonRepositoryTests
 
         // Assert
         mock.Verify(
-            m => m.QuerySingleOrDefaultAsync<Person?>(It.IsNotNull<string>(), It.IsNotNull<object>(), null, null,
-                null), Times.Once);
+            m => m.QuerySingleOrDefaultAsync<Person?>(Resource.GetPersonByIdSqlQuery, It.IsNotNull<object>(), null,
+                null, null), Times.Once);
         
         result.Should().BeNull("because the Person row does not exist");
     }
