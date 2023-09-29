@@ -4,5 +4,5 @@ namespace CleanArchitecture.Application.Contracts.Services;
 
 public interface IHelloWorldService
 {
-    Task<HelloWorldMessage> GetMessage(Guid helloWorldId);
+    Task<HelloWorldMessage> GetMessage(Guid personId);
 }

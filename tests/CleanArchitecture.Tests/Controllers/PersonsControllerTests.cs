@@ -25,7 +25,7 @@ public class PersonsControllerTests
         // Assert
         mock.Verify(m => m.GetMessage(It.IsNotNull<Guid>()), Times.Once);
 
-        result.Should().BeOfType<OkObjectResult>().Which.StatusCode.Should().Be(StatusCodes.Status200OK,
+        result.Result.Should().BeOfType<OkObjectResult>().Which.StatusCode.Should().Be(StatusCodes.Status200OK,
             "because hello world service returns any message");
     }
 }

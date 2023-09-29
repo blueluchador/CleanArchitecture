@@ -1,4 +1,5 @@
 using CleanArchitecture.Application.Contracts.Services;
+using CleanArchitecture.Application.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Api.Controllers;
@@ -19,11 +20,11 @@ public class PersonsController : ControllerBase
     }
     
     /// <summary>
-    /// This endpoint returns the person hello world message.
+    /// This endpoint returns the hello world message.
     /// </summary>
     /// <returns></returns>
     [HttpGet("{id:guid}/message")]
-    public async Task<IActionResult> GetHelloWorldMessage(Guid id)
+    public async Task<ActionResult<HelloWorldMessage>> GetHelloWorldMessage(Guid id)
     {
         return Ok(await _helloWorldService.GetMessage(id));
     }
