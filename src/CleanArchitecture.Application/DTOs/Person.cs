@@ -1,9 +1,8 @@
-namespace CleanArchitecture.Domain.Entities;
+namespace CleanArchitecture.Application.DTOs;
 
 public class Person
 {
-    public int Id { get; set; }
-    public Guid Uuid { get; set; }
+    public Guid PersonId { get; set; }
     public string? FirstName { get; init; }
     public string LastName { get; set; } = null!;
 }

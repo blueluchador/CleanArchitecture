@@ -28,7 +28,7 @@ public class PersonRepositoryTests
         // Assert
         mock.Verify(m => m.QueryAsync<Person>(Resource.GetPersonsSqlQuery, null, null, null, null), Times.Once);
 
-        result.Should().NotBeNull("because Person rows exist.");
+        result.Should().NotBeEmpty("because Person rows exist.");
         result.Should().HaveCount(3, "because there exists 3 person rows.");
     }
 
