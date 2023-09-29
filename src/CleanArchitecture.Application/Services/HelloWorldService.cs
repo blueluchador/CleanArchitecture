@@ -16,12 +16,13 @@ public class HelloWorldService : IHelloWorldService
         _logger = logger;
     }
 
-    public async Task<HelloWorldMessage> GetMessage(Guid helloWorldId)
+    public async Task<HelloWorldMessage> GetMessage(Guid personId)
     {
-        _logger.LogInformation("Get hello world message, HelloWorldId: {HelloWorldId}", helloWorldId);
-        var helloWorld = await _personRepository.GetPersonById(helloWorldId);
-        return helloWorld == null
+        _logger.LogInformation("Get Person '{PersonId}' from Person repository.", personId);
+        
+        var person = await _personRepository.GetPersonById(personId);
+        return person == null
             ? new HelloWorldMessage { Message = "Hello, World!" }
-            : new HelloWorldMessage { Message = $"Hello, {helloWorld.FirstName}!" };
+            : new HelloWorldMessage { Message = $"Hello, {person.FirstName}!" };
     }
 }
