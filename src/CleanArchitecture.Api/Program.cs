@@ -13,7 +13,10 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddApiDocs();
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddApiDocs();
+}
 
 builder.Services.AddCustomProblemDetails();
 

@@ -28,18 +28,16 @@ public static class OpenApiExtensions
             throw new ArgumentNullException(nameof(app));
         }
         
-        var environment = (app as WebApplication)!.Environment;
-        if (!environment.IsDevelopment() || environment.IsIntegrationTests())
+        if ((app as WebApplication)!.Environment.IsDevelopment())
         {
-            return app;
+            app.UseSwagger()
+                .UseReDoc(opt =>
+                {
+                    opt.DocumentTitle = "Hello World API";
+                    opt.SpecUrl = "/swagger/v1/swagger.json";
+                });
         }
-            
-        return app
-            .UseSwagger()
-            .UseReDoc(opt =>
-            {
-                opt.DocumentTitle = "Hello World API";
-                opt.SpecUrl = "/swagger/v1/swagger.json";
-            });
+
+        return app;
     }
 }
