@@ -15,9 +15,11 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
     }
 
     [Theory]
-    [InlineData("b5d74ff1-572f-4dd5-beb3-3aa67adf6b49")]
-    [InlineData("53b2abec-a06b-4686-9c5a-5ede268eab6b")]
-    public async Task GetHelloWorldMessage_ReturnsSuccess(string personId)
+    [InlineData("b5d74ff1-572f-4dd5-beb3-3aa67adf6b49", "Buck")]
+    [InlineData("5ebeb2d5-80fb-4028-89c5-577ca4003ac5", "Austin")]
+    [InlineData("d8b796f7-b2f1-4ccf-955c-bc5a9f6a6afd", "Rico")]
+    [InlineData("53b2abec-a06b-4686-9c5a-5ede268eab6b", null)]
+    public async Task GetHelloWorldMessage_ReturnsSuccess(string personId, string? name)
     {
         // Arrange
         var client = _factory.CreateClient();
@@ -30,9 +32,9 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
         response.Should().HaveStatusCode(HttpStatusCode.OK, "because the endpoint responded successfully");
         message.Should().NotBeNull("because the endpoint returns any message");
 
-        if (personId == "b5d74ff1-572f-4dd5-beb3-3aa67adf6b49")
+        if (name != null)
         {
-            message.Message.Should().Be("Hello, Gerardo!", "because the person table returns 'Gerardo'");
+            message.Message.Should().Be($"Hello, {name}!", $"because the person table returns '{name}'");
         }
         else
         {
