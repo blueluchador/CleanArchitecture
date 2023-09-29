@@ -1,7 +1,14 @@
-namespace CleanArchitecture.Api.Middleware;
+using CleanArchitecture.Api.Middleware;
+
+namespace CleanArchitecture.Api.Extensions;
 
 public static class MiddlewareExtensions
 {
+    public static IApplicationBuilder UseCorrelationIdMiddleware(this IApplicationBuilder app)
+    {
+        return app.UseMiddleware<CorrelationIdMiddleware>();
+    }
+    
     public static IApplicationBuilder UsePingEndpointMiddleware(this IApplicationBuilder app)
     {
         return app.MapWhen(

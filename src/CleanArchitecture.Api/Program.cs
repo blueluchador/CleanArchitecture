@@ -22,7 +22,7 @@ builder.Services.AddCustomProblemDetails();
 
 builder.Services.AddCustomHealthChecks(builder.Configuration);
 
-// TODO: Context Items Service
+// TODO: Context Items Service used with request header middleware.
 
 builder.Services.AddHelloWorldRepository(builder.Configuration.GetConnectionString("HelloWorldDB"));
 
@@ -35,9 +35,11 @@ app.UseOpenApi();
 
 app.UseCustomRequestLogging();
 
+app.UseCorrelationIdMiddleware();
+
 app.UsePingEndpointMiddleware();
 
-// app.UseApiRequestHeadersMiddleware();
+// app.UseRequestHeadersMiddleware();
 
 app.UseHttpsRedirection();
 
