@@ -4,6 +4,8 @@ namespace CleanArchitecture.Api.Middleware;
 
 public class CorrelationIdMiddleware
 {
+    private const string HeaderKey = "X-Correlation-ID";
+    
     private readonly RequestDelegate _next;
     
     public CorrelationIdMiddleware(RequestDelegate next)
@@ -13,7 +15,7 @@ public class CorrelationIdMiddleware
     
     public Task Invoke(HttpContext context)
     {
-        if (context.Request.Headers.TryGetValue("X-Correlation-ID", out var correlationId))
+        if (context.Request.Headers.TryGetValue(HeaderKey, out var correlationId))
         {
             context.TraceIdentifier = correlationId;
         }
@@ -25,7 +27,7 @@ public class CorrelationIdMiddleware
         // apply the correlation ID to the response header for client side tracking
         context.Response.OnStarting(() =>
         {
-            context.Response.Headers.Add("X-Correlation-ID", new[] { context.TraceIdentifier });
+            context.Response.Headers.Add(HeaderKey, new[] { context.TraceIdentifier });
             return Task.CompletedTask;
         });
         
