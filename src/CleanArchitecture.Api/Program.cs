@@ -38,7 +38,7 @@ app.UsePingEndpointMiddleware();
 
 app.UseHttpsRedirection();
 
-//app.UseAuthorization();
+app.UseAuthorization();
 
 app.MapControllers();
 

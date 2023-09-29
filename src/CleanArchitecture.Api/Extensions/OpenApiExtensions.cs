@@ -23,16 +23,23 @@ public static class OpenApiExtensions
 
     public static IApplicationBuilder UseOpenApi(this IApplicationBuilder app)
     {
-        if ((app as WebApplication)!.Environment.IsDevelopment())
+        if (app == null)
         {
-            app.UseSwagger()
-                .UseReDoc(opt =>
-                {
-                    opt.DocumentTitle = "Hello World API";
-                    opt.SpecUrl = "/swagger/v1/swagger.json";
-                });
+            throw new ArgumentNullException(nameof(app));
         }
-
-        return app;
+        
+        var environment = (app as WebApplication)!.Environment;
+        if (!environment.IsDevelopment() || environment.IsIntegrationTests())
+        {
+            return app;
+        }
+            
+        return app
+            .UseSwagger()
+            .UseReDoc(opt =>
+            {
+                opt.DocumentTitle = "Hello World API";
+                opt.SpecUrl = "/swagger/v1/swagger.json";
+            });
     }
 }
