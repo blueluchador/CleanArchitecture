@@ -1,6 +1,7 @@
 using CleanArchitecture.Api.Extensions;
 using CleanArchitecture.Api.Middleware;
 using CleanArchitecture.Application.Services;
+using CleanArchitecture.Infrastructure.ContextItems;
 using CleanArchitecture.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,7 @@ builder.Services.AddCustomProblemDetails();
 builder.Services.AddCustomHealthChecks(builder.Configuration);
 
 // TODO: Context Items Service used with request header middleware.
+builder.Services.AddContextItemsService();
 
 builder.Services.AddHelloWorldRepository(builder.Configuration.GetConnectionString("HelloWorldDB"));
 
@@ -39,7 +41,7 @@ app.UseCorrelationIdMiddleware();
 
 app.UsePingEndpointMiddleware();
 
-// app.UseRequestHeadersMiddleware();
+app.UseRequestHeadersMiddleware(new RequestHeaderOptions { Headers = new[] { "Some-App-Header" } });
 
 app.UseHttpsRedirection();
 

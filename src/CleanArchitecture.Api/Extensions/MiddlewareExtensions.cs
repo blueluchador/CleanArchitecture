@@ -17,4 +17,10 @@ public static class MiddlewareExtensions
                        String.IsNullOrEmpty(remaining),
             mapApp => { mapApp.Run(async context => await context.Response.WriteAsync("pong")); });
     }
+
+    public static IApplicationBuilder UseRequestHeadersMiddleware(this IApplicationBuilder app,
+        RequestHeaderOptions options)
+    {
+        return app;
+    }
 }
