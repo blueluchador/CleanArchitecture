@@ -13,16 +13,11 @@ public class CorrelationIdMiddleware
         _next = next ?? throw new ArgumentNullException(nameof(next));
     }
     
-    public Task Invoke(HttpContext context)
+    public async Task InvokeAsync(HttpContext context)
     {
-        if (context.Request.Headers.TryGetValue(HeaderKey, out var correlationId))
-        {
-            context.TraceIdentifier = correlationId;
-        }
-        else
-        {
-            context.TraceIdentifier = Guid.NewGuid().ToString();
-        }
+        context.TraceIdentifier = context.Request.Headers.TryGetValue(HeaderKey, out var correlationId)
+            ? correlationId
+            : Guid.NewGuid().ToString();
         
         // apply the correlation ID to the response header for client side tracking
         context.Response.OnStarting(() =>
@@ -31,6 +26,6 @@ public class CorrelationIdMiddleware
             return Task.CompletedTask;
         });
         
-        return _next(context);
+       await _next(context);
     }
 }
