@@ -15,8 +15,8 @@ public class CorrelationIdMiddleware
     
     public async Task InvokeAsync(HttpContext context)
     {
-        context.TraceIdentifier = context.Request.Headers.TryGetValue(HeaderKey, out var correlationId)
-            ? correlationId
+        context.TraceIdentifier = context.Request.Headers.TryGetValue(HeaderKey, out var value)
+            ? value.Single()
             : Guid.NewGuid().ToString();
         
         // apply the correlation ID to the response header for client side tracking
