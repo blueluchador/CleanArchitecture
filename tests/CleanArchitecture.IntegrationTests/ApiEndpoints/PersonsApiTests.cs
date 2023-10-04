@@ -1,6 +1,7 @@
 using System.Net;
 using CleanArchitecture.Api.Controllers.Responses;
 using CleanArchitecture.Application.DTOs;
+using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.IntegrationTests.Extensions;
 using CleanArchitecture.TestFixtures;
 
@@ -20,6 +21,7 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
     {
         // Arrange
         var client = _factory.CreateClient();
+        client.DefaultRequestHeaders.Add(ApiHeaders.TenantId, "ba5eba11-babe-505a-c0bb-dec1a551f1ed");
         
         // Act
         var response = await client.GetAsync("persons");

@@ -1,6 +1,6 @@
 using CleanArchitecture.Api.Extensions;
-using CleanArchitecture.Api.Middleware;
 using CleanArchitecture.Application.Services;
+using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Infrastructure.ContextItems;
 using CleanArchitecture.Infrastructure.Repositories;
 
@@ -40,7 +40,7 @@ app.UseCorrelationIdMiddleware();
 
 app.UsePingEndpointMiddleware();
 
-app.UseRequestHeadersMiddleware(new RequestHeaderOptions { Headers = new[] { "X-Tenant-ID" } });
+app.UseRequestHeadersMiddleware(new[] { ApiHeaders.TenantId });
 
 app.UseHttpsRedirection();
 

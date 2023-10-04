@@ -1,3 +1,5 @@
+using CleanArchitecture.Application.Contracts.ContextItems;
+using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.EmbeddedSqlResources;
 using CleanArchitecture.Infrastructure.ORM;
@@ -10,6 +12,7 @@ namespace CleanArchitecture.Tests.Repositories;
 public class PersonRepositoryTests
 {
     private readonly IObjectMapper _objectMapper = Mock.Of<IObjectMapper>();
+    private readonly IContextItems _contextItems = Mock.Of<IContextItems>();
     private readonly ILogger<PersonRepository> _logger = Mock.Of<ILogger<PersonRepository>>();
 
     [Fact]
@@ -18,15 +21,19 @@ public class PersonRepositoryTests
         // Arrange
         var mock = Mock.Get(_objectMapper);
 
-        mock.Setup(m => m.QueryAsync<Person>(It.IsAny<string>(), null, null, null, null))
+        Mock.Get(_contextItems).Setup(m => m.Get(ApiHeaders.TenantId))
+            .Returns("ba5eba11-babe-505a-c0bb-dec1a551f1ed");
+
+        mock.Setup(m => m.QueryAsync<Person>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
             .ReturnsAsync(Fake.CreateMany<Person>(3));
         
         // Act
-        var repository = new PersonRepository(_objectMapper, _logger);
+        var repository = new PersonRepository(_objectMapper, _contextItems, _logger);
         var result = (await repository.GetPersons()).ToArray();
         
         // Assert
-        mock.Verify(m => m.QueryAsync<Person>(Resource.GetPersonsSqlQuery, null, null, null, null), Times.Once);
+        mock.Verify(m => m.QueryAsync<Person>(Resource.GetPersonsSqlQuery, It.IsNotNull<object>(), null, null, null),
+            Times.Once);
 
         result.Should().NotBeEmpty("because Person rows exist.");
         result.Should().HaveCount(3, "because there exists 3 person rows.");
@@ -43,7 +50,7 @@ public class PersonRepositoryTests
             .ReturnsAsync(Fake.Create<Person>());
 
         // Act
-        var repository = new PersonRepository(_objectMapper, _logger);
+        var repository = new PersonRepository(_objectMapper, _contextItems, _logger);
         var result = await repository.GetPersonById(Guid.NewGuid());
 
         // Assert
@@ -65,7 +72,7 @@ public class PersonRepositoryTests
             .ReturnsAsync(Fake.CreateNull<Person>());
 
         // Act
-        var repository = new PersonRepository(_objectMapper, _logger);
+        var repository = new PersonRepository(_objectMapper, _contextItems, _logger);
         var result = await repository.GetPersonById(Guid.NewGuid());
 
         // Assert

@@ -19,14 +19,14 @@ public class RequestHeadersMiddleware
         _options = options.Value;
     }
 
-    public async Task InvokeAsync(HttpContext context, IWriteableContextItems contextItems)
+    public async Task InvokeAsync(HttpContext context, IWriteableContextItems contextItems,
+        ILogger<RequestHeadersMiddleware> logger)
     {
         foreach (string headerKey in _options.Headers)
         {
-            if (context.Request.Headers.TryGetValue(headerKey, out var value))
-            {
-                contextItems.Set(headerKey, value);
-            }
+            if (!context.Request.Headers.TryGetValue(headerKey, out var value)) continue;
+            logger.LogInformation("Setting context item '{Header}' to value='{Value}'", headerKey, value);
+            contextItems.Set(headerKey, value);
         }
 
         await _next(context);
