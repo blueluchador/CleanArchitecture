@@ -1,3 +1,4 @@
+using CleanArchitecture.Application.Contracts.ContextItems;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Infrastructure.ContextItems;

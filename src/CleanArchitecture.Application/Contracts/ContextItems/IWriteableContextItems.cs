@@ -1,4 +1,4 @@
-namespace CleanArchitecture.Infrastructure.ContextItems;
+namespace CleanArchitecture.Application.Contracts.ContextItems;
 
 public interface IWriteableContextItems
 {

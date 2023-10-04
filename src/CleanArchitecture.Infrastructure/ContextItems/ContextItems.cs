@@ -1,3 +1,5 @@
+using CleanArchitecture.Application.Contracts.ContextItems;
+
 namespace CleanArchitecture.Infrastructure.ContextItems;
 
 public class ContextItems : IContextItems, IWriteableContextItems

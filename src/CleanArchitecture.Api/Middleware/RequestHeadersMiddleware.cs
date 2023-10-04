@@ -1,4 +1,4 @@
-using CleanArchitecture.Infrastructure.ContextItems;
+using CleanArchitecture.Application.Contracts.ContextItems;
 using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.Api.Middleware;
