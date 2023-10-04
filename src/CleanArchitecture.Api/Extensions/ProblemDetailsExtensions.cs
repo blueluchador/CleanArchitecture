@@ -12,7 +12,8 @@ public static class ProblemDetailsExtensions
         return services.AddProblemDetails(opt =>
         {
             opt.Rethrow<NotSupportedException>();
-            opt.MapToStatusCode<ItemNotFoundException>(StatusCodes.Status404NotFound);
+            opt.MapToStatusCode<BadRequestException>(StatusCodes.Status400BadRequest);
+            opt.MapToStatusCode<NotFoundException>(StatusCodes.Status404NotFound);
             opt.MapToStatusCode<NotImplementedException>(StatusCodes.Status501NotImplemented);
             opt.MapToStatusCode<HttpRequestException>(StatusCodes.Status503ServiceUnavailable);
             opt.MapToStatusCode<Exception>(StatusCodes.Status500InternalServerError);
