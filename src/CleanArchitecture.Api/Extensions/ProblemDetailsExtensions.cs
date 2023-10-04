@@ -1,3 +1,4 @@
+using CleanArchitecture.Application.Exceptions;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -11,8 +12,7 @@ public static class ProblemDetailsExtensions
         return services.AddProblemDetails(opt =>
         {
             opt.Rethrow<NotSupportedException>();
-            // TODO: What project will this exception come from?
-            //opt.MapToStatusCode<ItemNotFoundException>(StatusCodes.Status404NotFound);
+            opt.MapToStatusCode<ItemNotFoundException>(StatusCodes.Status404NotFound);
             opt.MapToStatusCode<NotImplementedException>(StatusCodes.Status501NotImplemented);
             opt.MapToStatusCode<HttpRequestException>(StatusCodes.Status503ServiceUnavailable);
             opt.MapToStatusCode<Exception>(StatusCodes.Status500InternalServerError);
