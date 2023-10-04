@@ -2,5 +2,5 @@ namespace CleanArchitecture.Api.Middleware;
 
 public class RequestHeaderOptions
 {
-    public IEnumerable<string> Headers { get; set; } = Array.Empty<string>();
+    public IEnumerable<Header> Headers { get; init; } = Array.Empty<Header>();
 }

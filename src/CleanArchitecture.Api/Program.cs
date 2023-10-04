@@ -1,8 +1,10 @@
 using CleanArchitecture.Api.Extensions;
+using CleanArchitecture.Api.Middleware;
 using CleanArchitecture.Application.Services;
 using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Infrastructure.ContextItems;
 using CleanArchitecture.Infrastructure.Repositories;
+using Hellang.Middleware.ProblemDetails;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,11 +38,13 @@ app.UseOpenApi();
 
 app.UseCustomRequestLogging();
 
+app.UseProblemDetails();
+
 app.UseCorrelationIdMiddleware();
 
 app.UsePingEndpointMiddleware();
 
-app.UseRequestHeadersMiddleware(new[] { ApiHeaders.TenantId });
+app.UseRequestHeadersMiddleware(new[] { new Header { Key = ApiHeaders.TenantId } });
 
 app.UseHttpsRedirection();
 

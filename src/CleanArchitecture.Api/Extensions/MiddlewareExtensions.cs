@@ -20,7 +20,7 @@ public static class MiddlewareExtensions
     }
     
     public static IApplicationBuilder UseRequestHeadersMiddleware(this IApplicationBuilder app,
-        IEnumerable<string> headers)
+        IEnumerable<Header> headers)
     {
         return app.UseRequestHeadersMiddleware(new RequestHeaderOptions { Headers = headers });
     }
