@@ -40,7 +40,7 @@ app.UseCorrelationIdMiddleware();
 
 app.UsePingEndpointMiddleware();
 
-app.UseRequestHeadersMiddleware(new RequestHeaderOptions { Headers = new[] { "Header-Example" } });
+app.UseRequestHeadersMiddleware(new RequestHeaderOptions { Headers = new[] { "X-Tenant-ID" } });
 
 app.UseHttpsRedirection();
 
