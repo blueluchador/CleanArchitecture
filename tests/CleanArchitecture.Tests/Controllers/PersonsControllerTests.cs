@@ -1,4 +1,5 @@
 using CleanArchitecture.Api.Controllers;
+using CleanArchitecture.Api.Controllers.Requests;
 using CleanArchitecture.Application.Contracts.Services;
 using CleanArchitecture.Application.DTOs;
 using CleanArchitecture.TestFixtures;
@@ -22,7 +23,7 @@ public class PersonsControllerTests
         
         // Act
         var controller = new PersonsController(_personsService, _helloWorldService);
-        var result = await controller.GetPersons();
+        var result = await controller.GetPersons(new GetPersonsRequest());
         
         // Assert
         mock.Verify(m => m.GetPersons(), Times.Once);

@@ -1,3 +1,4 @@
+using CleanArchitecture.Api.Controllers.Requests;
 using CleanArchitecture.Api.Controllers.Responses;
 using CleanArchitecture.Application.Contracts.Services;
 using CleanArchitecture.Application.DTOs;
@@ -27,7 +28,7 @@ public class PersonsController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<GetPersonsResponse>> GetPersons()
+    public async Task<ActionResult<GetPersonsResponse>> GetPersons([FromQuery] GetPersonsRequest request)
     {
         return Ok(new GetPersonsResponse
         {
