@@ -34,6 +34,21 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
     }
 
     [Theory]
+    [InlineData("persons")]
+    [InlineData("persons/b5d74ff1-572f-4dd5-beb3-3aa67adf6b49/message")]
+    public async Task Get_EndpointsMissingTenantId_ReturnsBadRequest(string url)
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        
+        // Act
+        var response = await client.GetAsync(url);
+        
+        // Assert
+        response.Should().HaveStatusCode(HttpStatusCode.BadRequest, "because the Tenant ID header is missing");
+    }
+
+    [Theory]
     [InlineData("b5d74ff1-572f-4dd5-beb3-3aa67adf6b49", "Buck")]
     [InlineData("5ebeb2d5-80fb-4028-89c5-577ca4003ac5", "Austin")]
     [InlineData("d8b796f7-b2f1-4ccf-955c-bc5a9f6a6afd", "Rico")]
@@ -42,7 +57,8 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
     {
         // Arrange
         var client = _factory.CreateClient();
-
+        client.DefaultRequestHeaders.Add(ApiHeaders.TenantId, "ba5eba11-babe-505a-c0bb-dec1a551f1ed");
+    
         // Act
         var response = await client.GetAsync($"persons/{personId}/message");
         var message = await response.ProcessResponse<HelloWorldMessage>();
@@ -50,7 +66,7 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
         // Assert
         response.Should().HaveStatusCode(HttpStatusCode.OK, "because the endpoint responded successfully");
         message.Should().NotBeNull("because the endpoint returns any message");
-
+    
         if (name != null)
         {
             message.Message.Should().Be($"Hello, {name}!", $"because the person table returns '{name}'");
