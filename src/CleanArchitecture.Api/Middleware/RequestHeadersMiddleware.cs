@@ -1,5 +1,4 @@
 using CleanArchitecture.Application.Contracts.ContextItems;
-using CleanArchitecture.Application.Exceptions;
 using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.Api.Middleware;
