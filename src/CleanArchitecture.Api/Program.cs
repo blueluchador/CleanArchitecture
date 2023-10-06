@@ -1,5 +1,4 @@
 using CleanArchitecture.Api.Extensions;
-using CleanArchitecture.Api.Middleware;
 using CleanArchitecture.Application.Services;
 using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Infrastructure.ContextItems;
