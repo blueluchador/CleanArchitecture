@@ -30,7 +30,7 @@ public class PersonsServiceTests
     }
     
     [Fact]
-    public async Task GetPersonById_ReturnsPersonDTO()
+    public async Task GetPersonById_ReturnsPerson()
     {
         // Arrange
         var person = Fake.Create<Person>();

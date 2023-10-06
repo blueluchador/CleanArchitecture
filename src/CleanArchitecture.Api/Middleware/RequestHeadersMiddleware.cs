@@ -23,15 +23,11 @@ public class RequestHeadersMiddleware
     public async Task InvokeAsync(HttpContext context, IWriteableContextItems contextItems,
         ILogger<RequestHeadersMiddleware> logger)
     {
-        foreach (var header in _options.Headers)
+        foreach (string key in _options.Headers)
         {
-            if (!context.Request.Headers.TryGetValue(header.Key, out var value))
-            {
-                if (!header.IsRequired) continue;
-                throw new BadRequestException($"The required header '{header.Key}' is missing from the request.");
-            }
-            logger.LogInformation("Setting context item '{Header}' to value='{Value}'", header.Key, value);
-            contextItems.Set(header.Key, value);
+            if (!context.Request.Headers.TryGetValue(key, out var value)) continue;
+            logger.LogInformation("Setting context item '{Header}' to value='{Value}'", key, value);
+            contextItems.Set(key, value);
         }
 
         await _next(context);

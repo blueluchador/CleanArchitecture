@@ -44,7 +44,7 @@ app.UseCorrelationIdMiddleware();
 
 app.UsePingEndpointMiddleware();
 
-app.UseRequestHeadersMiddleware(new[] { new Header { Key = ApiHeaders.TenantId } });
+app.UseRequestHeadersMiddleware(new[] { ApiHeaders.TenantId });
 
 app.UseHttpsRedirection();
 

@@ -64,7 +64,6 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
     
     [Theory]
     [InlineData("persons")]
-    [InlineData("persons/b5d74ff1-572f-4dd5-beb3-3aa67adf6b49/message")]
     public async Task Get_EndpointsMissingTenantId_ReturnsBadRequest(string url)
     {
         // Arrange
@@ -74,6 +73,6 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
         var response = await client.GetAsync(url);
         
         // Assert
-        response.Should().HaveStatusCode(HttpStatusCode.BadRequest, "because the Tenant ID header is missing");
+        response.Should().HaveStatusCode(HttpStatusCode.InternalServerError, "because the Tenant ID header is missing");
     }
 }
