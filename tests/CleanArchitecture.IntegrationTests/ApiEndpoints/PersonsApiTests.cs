@@ -16,12 +16,14 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
         _factory = factory;
     }
 
-    [Fact]
-    public async Task GetPersons_ReturnsSuccess()
+    [Theory]
+    [InlineData("ba5eba11-babe-505a-c0bb-dec1a551f1ed", 3)]
+    [InlineData("1bad2bad-3bad-4bad-5bad-badbadbadbad", 0)]
+    public async Task GetPersons_ReturnsSuccess(string tenantId, int count)
     {
         // Arrange
         var client = _factory.CreateClient();
-        client.DefaultRequestHeaders.Add(ApiHeaders.TenantId, "ba5eba11-babe-505a-c0bb-dec1a551f1ed");
+        client.DefaultRequestHeaders.Add(ApiHeaders.TenantId, tenantId);
         
         // Act
         var response = await client.GetAsync("persons");
@@ -30,7 +32,7 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
         // Assert
         response.Should().HaveStatusCode(HttpStatusCode.OK, "because the endpoint responded successfully");
         persons.Should().NotBeNull("because the endpoint never returns null");
-        persons.Persons.Should().HaveCount(3, "because the endpoint responds with 3 Persons");
+        persons.Persons.Should().HaveCount(count, $"because the endpoint responds with {count} Persons");
     }
     
     [Theory]
@@ -71,7 +73,7 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
     [InlineData("b5d74ff1-572f-4dd5-beb3-3aa67adf6b49", "Buck")]
     [InlineData("5ebeb2d5-80fb-4028-89c5-577ca4003ac5", "Austin")]
     [InlineData("d8b796f7-b2f1-4ccf-955c-bc5a9f6a6afd", "Rico")]
-    [InlineData("53b2abec-a06b-4686-9c5a-5ede268eab6b", null)]
+    [InlineData("707a11ed-dead-501e-1bad-70ffeec0ffee", null)]
     public async Task GetHelloWorldMessage_ReturnsSuccess(string personId, string? name)
     {
         // Arrange
