@@ -35,10 +35,28 @@ public class PersonsController : ControllerBase
             Persons = await _personsService.GetPersons()
         });
     }
+
+    /// <summary>
+    /// This endpoint returns a Person.
+    /// </summary>
+    /// <param name="id">The Person ID.</param>
+    /// <returns></returns>
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<Person>> GetPerson(Guid id)
+    {
+        var person = await _personsService.GetPersonById(id);
+        if (person == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(person);
+    }
     
     /// <summary>
     /// This endpoint returns the hello world message.
     /// </summary>
+    /// <param name="id">The Person ID.</param>
     /// <returns></returns>
     [HttpGet("{id:guid}/message")]
     public async Task<ActionResult<HelloWorldMessage>> GetHelloWorldMessage(Guid id)

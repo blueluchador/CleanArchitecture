@@ -73,6 +73,6 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
         var response = await client.GetAsync(url);
         
         // Assert
-        response.Should().HaveStatusCode(HttpStatusCode.InternalServerError, "because the Tenant ID header is missing");
+        response.Should().HaveStatusCode(HttpStatusCode.BadRequest, "because the Tenant ID header is missing");
     }
 }
