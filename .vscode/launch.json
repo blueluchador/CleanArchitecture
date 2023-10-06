@@ -8,7 +8,8 @@
       "platform": "netCore",
       "sourceFileMap": {
         "/src": "${workspaceFolder}"
-      }
+      },
+      "containerName": "run-local-clean-architecture.api-1"
     }
   ]
 }
