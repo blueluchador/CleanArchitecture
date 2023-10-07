@@ -14,14 +14,13 @@ To run the Clean Architecture application locally you need the following:
 * Docker (for Windows, Docker needs to be set to Linux container mode)
 * Visual Studio, Visual Studio Code, or Rider
   - For Visual Studio, the "Container development tools" component of Visual Studio is required, which can be added from the Visual Studio Installer
-* The latest version of .NET Core 6 SDK (or higher)
+* .NET Core SDK version 6.0.414 or higher
 
 ### Running locally
 
 The solution comes with a docker compose project containing various docker compose stacks that can be run from the command line or one of the IDEs above. The easiest and recommended IDE for debugging is Visual Studio Code. See [Debugging in Visual Studio Code](#debugging-in-visual-studio-code) for instructions on debugging the application in Visual Studio Code.
 
-To run the application locally, open a Bash terminal and type `.\run-local.sh` and press enter. The first time stack is
-run, it will go through the process of pulling down all the required images. Once the stack is up and everyting is configured correctly, you will begin to see application logs in the terminal window. A ReDoc page containing the API documention will also open automatically.
+To run the application locally, open a Bash terminal and type `.\run-local.sh` and press enter. The first time the stack is run, it will go through the process of pulling down all the required images. Once the stack is up you will begin to see application logs in the terminal window. A ReDoc page containing the API documention will also open automatically.
 
 ### Running tests
 
