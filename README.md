@@ -55,7 +55,14 @@ docker-compose -f docker-compose.tests.yml down -v --remove-orphans
 
 ### Debugging in Visual Studio Code
 
-_Instructions pending_
+VS Code supports debugging applications running in Docker. For this to work the docker stack must be running in debug mode. The run-local script has the option to run the application in debug mode.
+
+1) In a Bash terminal type `./run-local.sh --debug` or `./run-local.sh --debug`
+2) Wait for the build to complete and the docker compose stack to start running (the message "You can now start your debugging session in VS Code." will display when ready)
+3) In the VS Code activity sidebar, select the **Run and Debug** icon to bring up the **Run and Debug** view
+4) Make sure the "Debug in Docker" is selected in the dropdown, and click the green **Play** icon to start debugging
+
+When you are done debugging, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to terminate the debug session. The docker compose stack is automatically torn down.
 
 ## Guidlines
 

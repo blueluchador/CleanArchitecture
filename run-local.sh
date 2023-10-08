@@ -56,8 +56,7 @@ if [ "${run_tests-}" = true ]; then
   docker-compose -p $project "${compose_file_args[@]}" logs -f clean-architecture.tests
 else
   if [ "${launch_debug-}" = true ]; then
-    echo 'You can now start your debugging session in VS Code. A browser page will open when'
-    echo 'the debugging session has started.'
+    echo 'You can now start your debugging session in VS Code.'
   fi
   
   echo -n 'Launching the Clean Architecture service.'
