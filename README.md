@@ -11,6 +11,7 @@ Simply fork this repository and rename the project and solutions files. The dock
 To run the Clean Architecture application locally you need the following:
 
 * Windows, macOS or Linux development machine
+  - For Windows, [Git Bash](https://git-scm.com/download/win) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) is recommended
 * Docker (for Windows, Docker needs to be set to Linux container mode)
 * Visual Studio, Visual Studio Code, or Rider
   - For Visual Studio, the "Container development tools" component of Visual Studio is required, which can be added from the Visual Studio Installer
@@ -20,7 +21,19 @@ To run the Clean Architecture application locally you need the following:
 
 The solution comes with a docker compose project containing various docker compose stacks that can be run from the command line or one of the IDEs above. The easiest and recommended IDE for debugging is Visual Studio Code. See [Debugging in Visual Studio Code](#debugging-in-visual-studio-code) for instructions on debugging the application in Visual Studio Code.
 
-To run the application locally, open a Bash terminal and type `.\run-local.sh` and press enter. The first time the stack is run, it will go through the process of pulling down all the required images. Once the stack is up you will begin to see application logs in the terminal window. A ReDoc page containing the API documention will also open automatically.
+Open a Bash terminal and type `.\run-local.sh` to run the application locally. The first time the stack is run, it will go through the process of pulling down all the required images. Once the stack is up you will begin to see application logs in the terminal window. A ReDoc page containing the API documention will also open automatically.
+
+To manually start and teardwon the application locally, the following commands can be executed, respectively.
+
+```bash
+# Running container locally
+$ docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build --always-recreate-deps
+
+# Teardown the container
+$ docker-compose -f docker-compose.yml -f docker-compose.override.yml down -v --remove-orphans
+```
+
+Once the container stack is up and running, you can browse to `http://localhost:5999/api-docs` to view the API documentation.
 
 ### Running tests
 
