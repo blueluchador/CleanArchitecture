@@ -23,17 +23,19 @@ The solution comes with a docker compose project containing various docker compo
 
 Open a Bash terminal and type `.\run-local.sh` to run the application locally. The first time the stack is run, it will go through the process of pulling down all the required images. Once the stack is up you will begin to see application logs in the terminal window. A ReDoc page containing the API documention will also open automatically.
 
-To manually start and teardwon the application locally, the following commands can be executed, respectively.
+To manually start the application locally, type the following command in the terminal window.
 
 ```bash
-# Running container locally
-$ docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build --always-recreate-deps
-
-# Teardown the container
-$ docker-compose -f docker-compose.yml -f docker-compose.override.yml down -v --remove-orphans
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build --always-recreate-deps
 ```
 
-Once the container stack is up and running, you can browse to `http://localhost:5999/api-docs` to view the API documentation.
+Once the container stack is up and running, browse to `http://localhost:5999/api-docs` to view the API documentation.
+
+To teardown the application, type the following command.
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.override.yml down -v --remove-orphans
+```
 
 ### Running tests
 
