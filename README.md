@@ -29,7 +29,7 @@ To manually start the application locally, type the following command in the ter
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build --always-recreate-deps
 ```
 
-Once the container stack is up and running, browse to `http://localhost:5999/api-docs` to view the API documentation.
+When the container stack is up and running, browse to `http://localhost:5999/api-docs` to view the API documentation. Press <kbd>Ctrl</kbd> + <kbd>C</kbd> when done to terminate the application.
 
 To teardown the application, type the following command.
 
@@ -39,7 +39,19 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml down -v --re
 
 ### Running tests
 
-_Instructions pending_
+The same script for running the application locally can also be used to run end-to-end tests, including integration tests. Type `.\run-local.sh -t` or `.\run-local.sh --test` to run the tests. The tests are torn down immediately after all tests are completed.
+
+As with running the application locally, tests cans also be run manually by typing the following in a terminal window.
+
+```bash
+docker-compose -f docker-compose.tests.yml up --build --always-recreate-deps
+```
+
+The tests results are logged to the terminal window. When done, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to terminate the test, and type the following to tear down the stack.
+
+```bash
+docker-compose -f docker-compose.tests.yml down -v --remove-orphans
+```
 
 ### Debugging in Visual Studio Code
 
