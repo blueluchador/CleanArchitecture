@@ -31,6 +31,30 @@ Open a Bash terminal and type `.\run-local.sh` to run the application locally. T
 |`--test` or `-t`|Run the end-to-end and integration tests when the stack is up. The stack will be torn down and removed when the tests have completed.|
 |`--debug` or `-d`|Start the stack in debug mode for debugging in VS Code. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to terminate the debug session.|
 
+### Compose stacks from command line
+
+The docker compose stacks can also be built and run manually from the command line. The following are the commands for composing the stacks.
+
+```bash
+# Run application locally
+$ docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build --always-recreate-deps
+
+# Teardown application
+$ docker-compose -f docker-compose.yml -f docker-compose.override.yml down -v --remove-orphans
+
+# Run tests
+$ docker-compose -f docker-compose.tests.yml up --build --always-recreate-deps
+
+# Teardown tests
+$ docker-compose -f docker-compose.tests.yml down -v --remove-orphans
+
+# Run application in debug mode
+$ docker-compose -f docker-compose.yml -f docker-compose.debug.yml up --build --always-recreate-deps
+
+# Teardown debug mode
+$ docker-compose -f docker-compose.yml -f docker-compose.debug.yml down -v --remove-orphans
+```
+
 ## Debugging in Visual Studio Code
 
 VS Code supports debugging applications running in Docker. For this to work the docker stack must be running in debug mode. The run-local script has the option to run the application in debug mode.
@@ -44,3 +68,19 @@ VS Code supports debugging applications running in Docker. For this to work the 
 
 The following sections describes the different layers in Clean Architecture and how they are used in this template.
 Each sections will also describe in what layer code should belong.
+
+### Domain
+
+_In progress_
+
+### Application
+
+_In progress_
+
+### Infrastructure
+
+_In progress_
+
+### API
+
+_In progress_
