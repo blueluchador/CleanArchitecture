@@ -69,6 +69,16 @@ VS Code supports debugging applications running in Docker. For this to work the 
 The following sections describes the different layers in Clean Architecture and how they are used in this template.
 Each sections will also describe in what layer code should belong.
 
+Now my favorite and easiest to understand Clean Architecture using .NET is in [this blog post](Clean Architecture with .NET and .NET Core — Overview) by [Ashish Patel](https://medium.com/@iamaashishpatel).
+
+I'll be referencing his diagrams, one of which is good represntation of Clean Architecture shown below.
+
+![Clean Architecture](https://miro.medium.com/v2/resize:fit:720/format:webp/1*GiykAevGwTtP_6LQ1CB1Ug.png)
+
+The next diagram I'll be refrencing is an excellent guide to what a .NET Clean Architecture project structure should look like.
+
+![Clean Architecture Project Structure](https://miro.medium.com/v2/resize:fit:720/format:webp/1*Vk7quy-rCWYom9kJ00V4sw.png)
+
 ### Domain
 
 _In progress_
@@ -77,7 +87,7 @@ _In progress_
 
 _In progress_
 
-### Infrastructure
+### Infrastructure (and Persistance)
 
 _In progress_
 
