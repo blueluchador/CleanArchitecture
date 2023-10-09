@@ -71,11 +71,13 @@ Each sections will also describe in what layer code should belong.
 
 Now my favorite and easiest to understand Clean Architecture using .NET is in [this blog post](https://medium.com/dotnet-hub/clean-architecture-with-dotnet-and-dotnet-core-aspnetcore-overview-introduction-getting-started-ec922e53bb97) by [Ashish Patel](https://medium.com/@iamaashishpatel).
 
-I'll be referencing his diagrams, one of which is good represntation of Clean Architecture shown below.
+One of the digrams from the blog post depicts a good represnetation of Clean Architecture. For those familiar with Clean Architecture, it doesn't exactly look like most diagrams you will find in most explanations. For one there is no "Frameworks & Drivers" layer, but other than that the rest of it is essentially the same, and a lot more clearer.
+
+I like that the "Frameworks & Drivers" was left out of this diagrame because that usually consists of the Web, database, UI, and other external components. I like to leave this out becuase I want to give developers the freedom of choosing their own database or UI framework for example.
 
 ![Clean Architecture](https://miro.medium.com/v2/resize:fit:720/format:webp/1*GiykAevGwTtP_6LQ1CB1Ug.png)
 
-The next diagram I'll be refrencing is an excellent guide to what a .NET Clean Architecture project structure should look like.
+The next diagram I am refrencing from the blog post is an excellent guide to what a .NET Clean Architecture project structure should look like. I will discuss more in the following sections.
 
 ![Clean Architecture Project Structure](https://miro.medium.com/v2/resize:fit:720/format:webp/1*Vk7quy-rCWYom9kJ00V4sw.png)
 
