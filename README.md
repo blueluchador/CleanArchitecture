@@ -33,7 +33,7 @@ Open a Bash terminal and type `.\run-local.sh` to run the application locally. T
 
 ### Compose stacks from command line
 
-The docker compose stacks can also be built and run manually from the command line. The following are the commands for composing the stacks.
+The docker compose stacks can also be built and run manually from the command line. The following are the commands for composing and tearing down the stacks.
 
 ```bash
 # Run application locally
