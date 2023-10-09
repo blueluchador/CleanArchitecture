@@ -29,7 +29,7 @@ To manually start the application locally, type the following command in the ter
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build --always-recreate-deps
 ```
 
-When the container stack is up and running, browse to `http://localhost:5999/api-docs` to view the API documentation. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> when done to terminate the application.
+When the container stack is up and running, browse to `http://localhost:5999/api-docs` to view the API documentation. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to terminate the application.
 
 To teardown the application, type the following command.
 
@@ -63,6 +63,18 @@ VS Code supports debugging applications running in Docker. For this to work the 
 4) Make sure the "Debug in Docker" dropdown configuration is selected, and click the green **Play** icon to start debugging
 
 When you are done debugging, press <kbd>Ctrl</kbd>+<kbd>C</kbd> to terminate the debug session. The docker compose stack is automatically torn down.
+
+Like with running the application and testing locally, starting the docker compose stack in debug mode can be done manually by typing the following in a Bash terminal.
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.debug.yml up --build --always-recreate-deps
+```
+
+And for terminating and tearing down the debug session, press <kbd>Ctrl</kbd>+<kbd>C</kbd> and type the follwing in the same terminal window.
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.debug.yml down -v --remove-orphans
+```
 
 ## Guidlines
 
