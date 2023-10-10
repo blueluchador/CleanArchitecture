@@ -80,7 +80,7 @@ The next diagram I am refrencing from the blog post is an excellent guide to wha
 
 |Project|CA Layer|Description|
 |:--:|:--:|---------|
-|CleanArchitecture.Domain|Entities|Sometimes called Core, but "Core" sounds too broad and "Entities" is to concrete. "Domain" better captures the essence of this layer.<br/><br/>The domain layer should contain:<br/><br/><ul><li>Entities Aggregates</li><li>Value objects</li><li>Domain events</li><li>Enums</li><li>Constants</li></ul>|
-|CleanArchitecture.Application|Use Cases||
-|CleanArchitecture.Infrastructure|Interface Adapter||
-|CleanArchitecture.API|Interface Adapter||
+|CleanArchitecture.Domain|Entities|This is the Enterprise Business Rules layer, and it holds core business or domain specific business rules.<br/><br/>The Domain layer contains:<br/><br/><ul><li>Entities</li><li>Aggregates</li><li>Value objects</li><li>Domain events</li><li>Enum</li><li>Constants</li></ul>|
+|CleanArchitecture.Application|Use Cases|This is the Application Business Rules layer, and it holds every use case of the application.<br/><br/>The Application layer contains:<br/><br/><ul><li>Abstractions/Contracts</li><li>Services/Handlers</li><li>DTO objects</li><li>Mappers</li><li>Validators</li><li>Exceptions</li><li>Behaviors</li><li>Specifications</li></ul>|
+|CleanArchitecture.Infrastructure|Interface Adapters||
+|CleanArchitecture.API|Interface Adapters||
