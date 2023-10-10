@@ -80,7 +80,7 @@ The next diagram I am refrencing from the blog post is an excellent guide to wha
 
 |Project|CA Layer|Description|
 |:--:|:--:|---------|
-|CleanArchitecture.Domain|Entities|Sometimes called Core, but "Core" sounds too broad and "Entities" is to concrete.<br/>"Domain" better captures the essence of this layer.<br/><br/>The domain layer should contain:<br/><br/><ul><li>Entities Aggregates</li><li>Value objects</li><li>Domain events</li><li>Enums</li><li>Constants</li></ul>|
+|CleanArchitecture.Domain|Entities|Sometimes called Core, but "Core" sounds too broad and "Entities" is to concrete. "Domain" better captures the essence of this layer.<br/><br/>The domain layer should contain:<br/><br/><ul><li>Entities Aggregates</li><li>Value objects</li><li>Domain events</li><li>Enums</li><li>Constants</li></ul>|
 |CleanArchitecture.Application|Use Cases||
 |CleanArchitecture.Infrastructure|Interface Adapter||
 |CleanArchitecture.API|Interface Adapter||
