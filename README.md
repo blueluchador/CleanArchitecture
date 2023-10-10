@@ -1,6 +1,6 @@
 # Clean Architecture Template
 
-The purpose of this template is to provide a starter template for a Clean Architecture solution in ASP.NET Core. The sample consists of a simple Hello World web application with a Postgres database to demonstrate this Clean Architecure implementation. The application and the database is containerized to quickly run out of the box, and debug and test.
+The purpose of this template is to provide a starter template for a Clean Architecture (CA) solution in ASP.NET Core. The sample consists of a simple Hello World web application with a Postgres database to demonstrate this CA implementation. The application and the database is containerized to quickly run locally out of the box, and to debug and test.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ Simply fork this repository and rename the project and solutions files. The dock
 
 ## Local Development Setup
 
-To run the Clean Architecture application locally you need the following:
+To run the application locally you need the following:
 
 * Windows, macOS or Linux development machine
   - For Windows, [Git Bash](https://git-scm.com/download/win) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) is recommended
@@ -26,7 +26,7 @@ Open a Bash terminal and type `.\run-local.sh` to run the application locally. T
 ### Run local options
 
 |Option|Description|
-|:--------:|--|
+|:--:|---------|
 |_none_|Run the application locally. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to terminate the running application.|
 |`--test` or `-t`|Run the end-to-end and integration tests when the stack is up. The stack will be torn down and removed when the tests have completed.|
 |`--debug` or `-d`|Start the stack in debug mode for debugging in VS Code. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to terminate the debug session.|
@@ -66,33 +66,21 @@ VS Code supports debugging applications running in Docker. For this to work the 
 
 ## Guidelines
 
-The following sections describes the different layers in Clean Architecture and how they are used in this template.
-Each sections will also describe in what layer code should belong.
+The following sections describes the different layers in CA and how they are used in this template. One of my favorite and easiest articles on CA using .NET is from [this blog post](https://medium.com/dotnet-hub/clean-architecture-with-dotnet-and-dotnet-core-aspnetcore-overview-introduction-getting-started-ec922e53bb97) by [Ashish Patel](https://medium.com/@iamaashishpatel).
 
-Now my favorite and easiest to understand Clean Architecture using .NET is in [this blog post](https://medium.com/dotnet-hub/clean-architecture-with-dotnet-and-dotnet-core-aspnetcore-overview-introduction-getting-started-ec922e53bb97) by [Ashish Patel](https://medium.com/@iamaashishpatel).
-
-One of the digrams from the blog post depicts a good represnetation of Clean Architecture. For those familiar with Clean Architecture, it doesn't exactly look like most diagrams you will find in most explanations. For one there is no "Frameworks & Drivers" layer, but other than that the rest of it is essentially the same, and a lot more clearer.
-
-I like that the "Frameworks & Drivers" was left out of this diagrame because that usually consists of the Web, database, UI, and other external components. I like to leave this out becuase I want to give developers the freedom of choosing their own database or UI framework for example.
+The following diagrams from the blog post depicts a good represnetation of CA. For those familiar with CA, it doesn't exactly look like the diagrams you will find in most explanations. For one there is no "Frameworks & Drivers" layer, but other than that the rest of it is essentially the same, and a lot more clearer.
 
 ![Clean Architecture](https://miro.medium.com/v2/resize:fit:720/format:webp/1*GiykAevGwTtP_6LQ1CB1Ug.png)
 
-The next diagram I am refrencing from the blog post is an excellent guide to what a .NET Clean Architecture project structure should look like. I will discuss more in the following sections.
+I like that the "Frameworks & Drivers" was left out of this diagram because that usually consists of the Web, database, UI, and other external components. The only thing that I disagree with is the User Interface being a part of the _Interface Adapter_ layer of CA. I like to leave that out of this layer becuase I am a strong beliver in micro frontends. I strictly limited this to the API in which case would be a microservice.
+
+The next diagram I am refrencing from the blog post is an excellent guide to what a .NET CA project structure should look like. Use this and the table that follows to use as a guide to determine what layer new code belongs to, and it was used here in this template.
 
 ![Clean Architecture Project Structure](https://miro.medium.com/v2/resize:fit:720/format:webp/1*Vk7quy-rCWYom9kJ00V4sw.png)
 
-### Domain
-
-_In progress_
-
-### Application
-
-_In progress_
-
-### Infrastructure (and Persistance)
-
-_In progress_
-
-### API
-
-_In progress_
+|Project|CA Layer|Description|
+|:--:|:--:|---------|
+|CleanArchitecture.Domain|Entities|Sometimes called Core, but "Core" sounds too broad and "Entities" is to concrete.<br/>"Domain" better captures the essence of this layer.<br/><br/>The domain layer should contain:<br/><br/>* Entities<br/>* Aggregates<br/>* Value objects<br/>* Domain events<br/>* Enums<br/>* Constants|
+|CleanArchitecture.Application|Use Cases||
+|CleanArchitecture.Infrastructure|Interface Adapter||
+|CleanArchitecture.API|Interface Adapter||
