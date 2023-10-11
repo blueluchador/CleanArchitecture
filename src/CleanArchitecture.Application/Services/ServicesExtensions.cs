@@ -1,4 +1,3 @@
-using CleanArchitecture.Application.Contracts.Services;
 using CleanArchitecture.Application.DTOs;
 using Microsoft.Extensions.DependencyInjection;
 

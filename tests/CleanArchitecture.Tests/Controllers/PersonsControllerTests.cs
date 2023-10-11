@@ -1,7 +1,7 @@
 using CleanArchitecture.Api.Controllers;
 using CleanArchitecture.Api.Controllers.Requests;
-using CleanArchitecture.Application.Contracts.Services;
 using CleanArchitecture.Application.DTOs;
+using CleanArchitecture.Application.Services;
 using CleanArchitecture.TestFixtures;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

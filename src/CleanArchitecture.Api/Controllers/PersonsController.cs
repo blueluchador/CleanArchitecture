@@ -1,7 +1,7 @@
 using CleanArchitecture.Api.Controllers.Requests;
 using CleanArchitecture.Api.Controllers.Responses;
-using CleanArchitecture.Application.Contracts.Services;
 using CleanArchitecture.Application.DTOs;
+using CleanArchitecture.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Api.Controllers;

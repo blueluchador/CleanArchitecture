@@ -1,6 +1,5 @@
 using CleanArchitecture.Application.Contracts.ContextItems;
 using CleanArchitecture.Application.Contracts.Repositories;
-using CleanArchitecture.Application.Contracts.Services;
 using CleanArchitecture.Application.DTOs;
 using CleanArchitecture.Domain.Constants;
 using Microsoft.Extensions.Logging;

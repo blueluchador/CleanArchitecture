@@ -1,6 +1,6 @@
 using CleanArchitecture.Application.DTOs;
 
-namespace CleanArchitecture.Application.Contracts.Services;
+namespace CleanArchitecture.Application.Services;
 
 public interface IPersonsService
 {
