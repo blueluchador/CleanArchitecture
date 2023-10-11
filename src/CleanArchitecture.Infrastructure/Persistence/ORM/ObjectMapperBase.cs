@@ -1,8 +1,8 @@
 using System.Data;
-using CleanArchitecture.Infrastructure.DataSourceConnectors;
+using CleanArchitecture.Infrastructure.Persistence.DataSourceConnectors;
 using Dapper;
 
-namespace CleanArchitecture.Infrastructure.ORM;
+namespace CleanArchitecture.Infrastructure.Persistence.ORM;
 
 public abstract class ObjectMapperBase
 {

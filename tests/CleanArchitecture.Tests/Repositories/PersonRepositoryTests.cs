@@ -2,8 +2,8 @@ using CleanArchitecture.Application.Contracts.ContextItems;
 using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.EmbeddedSqlResources;
-using CleanArchitecture.Infrastructure.ORM;
-using CleanArchitecture.Infrastructure.Repositories;
+using CleanArchitecture.Infrastructure.Persistence.ORM;
+using CleanArchitecture.Infrastructure.Persistence.Repositories;
 using CleanArchitecture.TestFixtures;
 using Microsoft.Extensions.Logging;
 

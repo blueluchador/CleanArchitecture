@@ -1,7 +1,7 @@
 using System.Data;
 using Npgsql;
 
-namespace CleanArchitecture.Infrastructure.DataSourceConnectors;
+namespace CleanArchitecture.Infrastructure.Persistence.DataSourceConnectors;
 
 public class NpgsqlConnectionFactory : IDbConnectionFactory
 {

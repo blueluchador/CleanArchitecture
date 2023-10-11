@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace CleanArchitecture.Infrastructure.DataSourceConnectors;
+namespace CleanArchitecture.Infrastructure.Persistence.DataSourceConnectors;
 
 public interface IDbConnectionFactory
 {

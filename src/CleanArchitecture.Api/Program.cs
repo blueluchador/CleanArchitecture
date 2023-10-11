@@ -2,7 +2,7 @@ using CleanArchitecture.Api.Extensions;
 using CleanArchitecture.Application.Services;
 using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Infrastructure.ContextItems;
-using CleanArchitecture.Infrastructure.Repositories;
+using CleanArchitecture.Infrastructure.Persistence.Repositories;
 using Hellang.Middleware.ProblemDetails;
 
 var builder = WebApplication.CreateBuilder(args);

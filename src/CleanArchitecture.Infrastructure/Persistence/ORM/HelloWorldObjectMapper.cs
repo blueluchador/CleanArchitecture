@@ -1,7 +1,6 @@
-using System.Data;
-using CleanArchitecture.Infrastructure.DataSourceConnectors;
+using CleanArchitecture.Infrastructure.Persistence.DataSourceConnectors;
 
-namespace CleanArchitecture.Infrastructure.ORM;
+namespace CleanArchitecture.Infrastructure.Persistence.ORM;
 
 public class HelloWorldObjectMapper : ObjectMapperBase, IObjectMapper
 {

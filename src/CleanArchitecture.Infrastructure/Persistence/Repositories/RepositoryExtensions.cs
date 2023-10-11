@@ -1,11 +1,11 @@
 using CleanArchitecture.Application.Contracts.ContextItems;
 using CleanArchitecture.Application.Contracts.Repositories;
-using CleanArchitecture.Infrastructure.DataSourceConnectors;
-using CleanArchitecture.Infrastructure.ORM;
+using CleanArchitecture.Infrastructure.Persistence.DataSourceConnectors;
+using CleanArchitecture.Infrastructure.Persistence.ORM;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitecture.Infrastructure.Repositories;
+namespace CleanArchitecture.Infrastructure.Persistence.Repositories;
 
 public static class RepositoryExtensions
 {

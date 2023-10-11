@@ -3,10 +3,10 @@ using CleanArchitecture.Application.Contracts.Repositories;
 using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.EmbeddedSqlResources;
-using CleanArchitecture.Infrastructure.ORM;
+using CleanArchitecture.Infrastructure.Persistence.ORM;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitecture.Infrastructure.Repositories;
+namespace CleanArchitecture.Infrastructure.Persistence.Repositories;
 
 public class PersonRepository : IPersonRepository
 {

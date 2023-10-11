@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace CleanArchitecture.Infrastructure.ORM;
+namespace CleanArchitecture.Infrastructure.Persistence.ORM;
 
 public interface IObjectMapper
 {
