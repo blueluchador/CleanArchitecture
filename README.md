@@ -74,7 +74,7 @@ The following diagrams from the blog post depicts a good represnetation of CA. F
 
 I like that the "Frameworks & Drivers" was left out of this diagram because that usually consists of the Web, database, UI, and other external components. The only thing that I disagree with is the User Interface being a part of the _Interface Adapter_ layer of CA. I like to leave that out of this layer becuase I am a strong beliver in micro frontends. I strictly limited this to the API for creating microservices.
 
-The next diagram I am refrencing from the blog post is an excellent guide to what a .NET CA project structure should look like. Use this and the table that follows to use as a guide to determine what layer new code belongs to, and it was used here in this template.
+The next diagram I am refrencing from the blog post is an excellent guide to what a .NET CA project structure should look like. Use this diagram and the table that follows as a guide to determine where code should belong.
 
 ![Clean Architecture Project Structure](https://miro.medium.com/v2/resize:fit:720/format:webp/1*Vk7quy-rCWYom9kJ00V4sw.png)
 
