@@ -22,13 +22,16 @@
 
     <ItemGroup>
       <None Remove="EmbeddedSqlResources\SqlScripts\get_person_by_id.sql" />
-      <EmbeddedResource Include="EmbeddedSqlResources\SqlScripts\get_person_by_id.sql" />
       <None Remove="EmbeddedSqlResources\SqlScripts\get_persons.sql" />
-      <EmbeddedResource Include="EmbeddedSqlResources\SqlScripts\get_persons.sql" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Persistence\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Persistence\EmbeddedSqlResources\SqlScripts\get_persons.sql" />
+      <EmbeddedResource Include="Persistence\EmbeddedSqlResources\SqlScripts\get_person_by_id.sql" />
     </ItemGroup>
 
 </Project>

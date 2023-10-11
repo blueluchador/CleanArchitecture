@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace CleanArchitecture.Infrastructure.EmbeddedSqlResources;
+namespace CleanArchitecture.Infrastructure.Persistence.EmbeddedSqlResources;
 
 public static class Resource
 {
@@ -12,10 +12,9 @@ public static class Resource
     
     private static string GetEmbeddedResource(string fileName)
     {
-        var assembly = Assembly.GetExecutingAssembly();
-        string resourceName = $"{assembly.GetName().Name}.EmbeddedSqlResources.SqlScripts.{fileName}";
+        string resourceName = $"{MethodBase.GetCurrentMethod()?.DeclaringType?.Namespace}.SqlScripts.{fileName}";
         
-        using var stream = assembly.GetManifestResourceStream(resourceName);
+        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
 
         if (stream == null)
         {
