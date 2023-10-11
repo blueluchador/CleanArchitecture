@@ -72,15 +72,16 @@ The following diagrams from the blog post depicts a good represnetation of CA. F
 
 ![Clean Architecture](https://miro.medium.com/v2/resize:fit:720/format:webp/1*GiykAevGwTtP_6LQ1CB1Ug.png)
 
-I like that the "Frameworks & Drivers" was left out of this diagram because that usually consists of the Web, database, UI, and other external components. The only thing that I disagree with is the User Interface being a part of the _Interface Adapter_ layer of CA. I like to leave that out of this layer becuase I am a strong beliver in micro frontends. I strictly limited this to the API in which case would be a microservice.
+I like that the "Frameworks & Drivers" was left out of this diagram because that usually consists of the Web, database, UI, and other external components. The only thing that I disagree with is the User Interface being a part of the _Interface Adapter_ layer of CA. I like to leave that out of this layer becuase I am a strong beliver in micro frontends. I strictly limited this to the API for creating microservices.
 
 The next diagram I am refrencing from the blog post is an excellent guide to what a .NET CA project structure should look like. Use this and the table that follows to use as a guide to determine what layer new code belongs to, and it was used here in this template.
 
 ![Clean Architecture Project Structure](https://miro.medium.com/v2/resize:fit:720/format:webp/1*Vk7quy-rCWYom9kJ00V4sw.png)
 
-|Project|CA Layer|Description|
-|:--:|:--:|---------|
-|CleanArchitecture.Domain|Entities|This is the Enterprise Business Rules layer, and it holds core business or domain specific business rules.<br/><br/>The Domain layer contains:<br/><br/><ul><li>Entities</li><li>Aggregates</li><li>Value objects</li><li>Domain events</li><li>Enum</li><li>Constants</li></ul>|
-|CleanArchitecture.Application|Use Cases|This is the Application Business Rules layer, and it holds every use case of the application.<br/><br/>The Application layer contains:<br/><br/><ul><li>Abstractions/Contracts</li><li>Services/Handlers</li><li>DTO objects</li><li>Mappers</li><li>Validators</li><li>Exceptions</li><li>Behaviors</li><li>Specifications</li></ul>|
-|CleanArchitecture.Infrastructure|Interface Adapters||
-|CleanArchitecture.API|Interface Adapters||
+|Project / Namespace |CA Layer|Description|Implements|
+|:--:|:--:|---------|---------|
+|CleanArchitecture.Domain|Entities|This is the Enterprise Business Rules layer, and it holds core business or domain specific business rules.|<ul><li>Entities</li><li>Aggregates</li><li>Value objects</li><li>Domain events</li><li>Enum</li><li>Constants</li></ul>|
+|CleanArchitecture.Application|Use Cases|This is the Application Business Rules layer, and it holds every use case of the application. It also implments the application business logic.|<ul><li>Abstractions/Contracts</li><li>Application Services/Handlers</li><li>DTO objects</li><li>Mappers</li><li>Validators</li><li>Exceptions</li><li>Behaviors</li><li>Specifications</li></ul>|
+|CleanArchitecture.Infrastructure|Interface Adapters|This layer is responsible for implementing the contracts defined in the application layer. It also implements abstractions and integrations to systems, downstream services, and third-party libraries.|<ul><li>Identity services</li><li>File storage</li><li>Queue storate</li><li>Notification services</li><li>Other third-party services</li></ul>|
+|CleanArchitecture.Infrastructure.Persistance|Interface Adapters|This layer handles database concerns and other data access operations.|<ul><li>ORM</li><li>Data connectors</li><li>Repositories</li><li>Data seeding</li><li>Data migrations</li><li>Caching</li></ul>|
+|CleanArchitecture.API|Interface Adapters|This layer only focuses on the API. It is preferred to handle the presentation externally (or a separate project).|<ul><li>API controllers</li><li>Requests/Responses</li><li>Middleware</li><li>Filters/Attributes</li><li>Web/API utilities</li></ul>|
