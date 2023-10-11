@@ -1,6 +1,4 @@
-using CleanArchitecture.Application.Contracts.ContextItems;
 using CleanArchitecture.Application.Contracts.Repositories;
-using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Persistence.EmbeddedSqlResources;
 using CleanArchitecture.Infrastructure.Persistence.ORM;
@@ -11,22 +9,20 @@ namespace CleanArchitecture.Infrastructure.Persistence.Repositories;
 public class PersonRepository : IPersonRepository
 {
     private readonly IObjectMapper _objectMapper;
-    private readonly IContextItems _contextItems;
     private readonly ILogger<PersonRepository> _logger;
 
-    public PersonRepository(IObjectMapper objectMapper, IContextItems contextItems, ILogger<PersonRepository> logger)
+    public PersonRepository(IObjectMapper objectMapper, ILogger<PersonRepository> logger)
     {
         _objectMapper = objectMapper;
-        _contextItems = contextItems;
         _logger = logger;
     }
 
-    public async Task<IEnumerable<Person>> GetPersons()
+    public async Task<IEnumerable<Person>> GetPersons(Guid tenantId)
     {
-        var tenantUuid = Guid.Parse(_contextItems.Get(ApiHeaders.TenantId));
-        _logger.LogInformation("Get Persons from Hello World Database. Tenant ID: '{TenantID}'", tenantUuid);
+        // var tenantUuid = Guid.Parse(_contextItems.Get(ApiHeaders.TenantId));
+        _logger.LogInformation("Get Persons from Hello World Database. Tenant ID: '{TenantID}'", tenantId);
 
-        var @params = new { tenantUuid };
+        var @params = new { tenantUuid = tenantId };
 
         return await _objectMapper.QueryAsync<Person>(Resource.GetPersonsSqlQuery, @params);
     }

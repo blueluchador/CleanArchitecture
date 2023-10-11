@@ -1,5 +1,7 @@
+using CleanArchitecture.Application.Contracts.ContextItems;
 using CleanArchitecture.Application.Contracts.Repositories;
 using CleanArchitecture.Application.Services;
+using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.TestFixtures;
 using Microsoft.Extensions.Logging;
@@ -9,21 +11,25 @@ namespace CleanArchitecture.Tests.Services;
 public class PersonsServiceTests
 {
     private readonly IPersonRepository _personRepository = Mock.Of<IPersonRepository>();
+    private readonly IContextItems _contextItems = Mock.Of<IContextItems>();
     private readonly ILogger<PersonsService> _logger = Mock.Of<ILogger<PersonsService>>();
 
     [Fact]
     public async Task GetPersons_ReturnsPersonObjects()
     {
         // Arrange
+        Mock.Get(_contextItems).Setup(m => m.Get(ApiHeaders.TenantId))
+            .Returns("ba5eba11-babe-505a-c0bb-dec1a551f1ed");
+        
         var mock = Mock.Get(_personRepository);
-        mock.Setup(m => m.GetPersons()).ReturnsAsync(Fake.CreateMany<Person>(3));
+        mock.Setup(m => m.GetPersons(It.IsAny<Guid>())).ReturnsAsync(Fake.CreateMany<Person>(3));
         
         // Act
-        var personsService = new PersonsService(_personRepository, _logger);
+        var personsService = new PersonsService(_personRepository, _contextItems, _logger);
         var result = (await personsService.GetPersons()).ToArray();
         
         // Assert
-        mock.Verify(m => m.GetPersons(), Times.Once);
+        mock.Verify(m => m.GetPersons(It.IsNotNull<Guid>()), Times.Once);
 
         result.Should().NotBeEmpty("because Persons exist.");
         result.Should().HaveCount(3, "because there exists 3 persons.");
@@ -38,7 +44,7 @@ public class PersonsServiceTests
         mock.Setup(m => m.GetPersonById(It.IsAny<Guid>())).ReturnsAsync(person);
         
         // Act
-        var personsService = new PersonsService(_personRepository, _logger);
+        var personsService = new PersonsService(_personRepository, _contextItems, _logger);
         var result = await personsService.GetPersonById(person.Uuid);
         
         // Assert
@@ -58,7 +64,7 @@ public class PersonsServiceTests
         mock.Setup(m => m.GetPersonById(It.IsAny<Guid>())).ReturnsAsync(Fake.CreateNull<Person>());
         
         // Act
-        var personsService = new PersonsService(_personRepository, _logger);
+        var personsService = new PersonsService(_personRepository, _contextItems, _logger);
         var result = await personsService.GetPersonById(new Guid());
         
         // Assert

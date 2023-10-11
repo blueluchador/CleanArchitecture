@@ -14,7 +14,6 @@ public static class RepositoryExtensions
         return services
             .AddScoped<IPersonRepository>(p => new PersonRepository(
                 new HelloWorldObjectMapper(new NpgsqlConnectionFactory(connectionString)),
-                p.GetRequiredService<IContextItems>(),
                 p.GetRequiredService<ILogger<PersonRepository>>()));
     }
 }
