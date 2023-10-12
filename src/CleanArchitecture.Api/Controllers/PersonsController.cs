@@ -52,6 +52,23 @@ public class PersonsController : ControllerBase
 
         return Ok(person);
     }
+
+    /// <summary>
+    /// This endpoint adds a Person.
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<ActionResult<AddPersonResponse>> AddPerson([FromBody] AddPersonRequest request)
+    {
+        var id = await _personsService.AddPerson(request.Person);
+        if (id == null)
+        {
+            return StatusCode(500);
+        }
+        
+        return CreatedAtAction(nameof(AddPerson), null, new AddPersonResponse { Id = id.Value });
+    }
     
     /// <summary>
     /// This endpoint returns the hello world message.

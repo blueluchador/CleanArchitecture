@@ -33,7 +33,7 @@ public class PersonsServiceTests
         mock.Verify(m => m.GetPersons(It.IsNotNull<Guid>()), Times.Once);
 
         result.Should().NotBeEmpty("because Persons exist.");
-        result.Should().HaveCount(3, "because there exists 3 persons.");
+        result.Should().HaveCount(3, "because there exists 3 Persons.");
     }
     
     [Fact]
@@ -111,6 +111,6 @@ public class PersonsServiceTests
         // Assert
         mock.Verify(m => m.AddPerson(It.IsNotNull<Person>(), It.IsNotNull<Guid>()), Times.Once);
         
-        result.Should().BeNull("because there was a problem adding the person to the repo.");
+        result.Should().BeNull("because there was a problem adding the Person to the repo.");
     }
 }

@@ -48,7 +48,7 @@ public class PersonsControllerTests
         mock.Verify(m => m.GetPersonById(It.IsNotNull<Guid>()), Times.Once);
         
         result.Result.Should().BeOfType<OkObjectResult>().Which.StatusCode.Should().Be(StatusCodes.Status200OK,
-            "because persons service returns a person object");
+            "because persons service returns a Person object");
     }
     
     [Fact]
@@ -67,7 +67,45 @@ public class PersonsControllerTests
         mock.Verify(m => m.GetPersonById(It.IsNotNull<Guid>()), Times.Once);
         
         result.Result.Should().BeOfType<NotFoundResult>().Which.StatusCode.Should().Be(StatusCodes.Status404NotFound,
-            "because persons service returns a null person object");
+            "because persons service returns a null Person object");
+    }
+
+    [Fact]
+    public async Task AddPerson_Created()
+    {
+        // Arrange
+        var mock = Mock.Get(_personsService);
+        
+        mock.Setup(m => m.AddPerson(It.IsAny<Person>())).ReturnsAsync(Guid.NewGuid());
+        
+        // Act
+        var controller = new PersonsController(_personsService, _helloWorldService);
+        var result = await controller.AddPerson(Fake.Create<AddPersonRequest>());
+        
+        // Assert
+        mock.Verify(m => m.AddPerson(It.IsNotNull<Person>()), Times.Once);
+
+        result.Result.Should().BeOfType<CreatedAtActionResult>().Which.StatusCode.Should()
+            .Be(StatusCodes.Status201Created, "because the Person was created.");
+    }
+    
+    [Fact]
+    public async Task AddPerson_ReturnsInternalServerError()
+    {
+        // Arrange
+        var mock = Mock.Get(_personsService);
+
+        mock.Setup(m => m.AddPerson(It.IsAny<Person>())).ReturnsAsync((Guid?)null);
+        
+        // Act
+        var controller = new PersonsController(_personsService, _helloWorldService);
+        var result = await controller.AddPerson(Fake.Create<AddPersonRequest>());
+        
+        // Assert
+        mock.Verify(m => m.AddPerson(It.IsNotNull<Person>()), Times.Once);
+
+        result.Result.Should().BeOfType<StatusCodeResult>().Which.StatusCode.Should()
+            .Be(StatusCodes.Status500InternalServerError, "because an error occured adding the Person.");
     }
 
     [Fact]
