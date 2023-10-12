@@ -5,6 +5,7 @@ using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.TestFixtures;
 using Microsoft.Extensions.Logging;
+using DTOs = CleanArchitecture.Application.DTOs;
 
 namespace CleanArchitecture.Tests.Services;
 
@@ -71,5 +72,45 @@ public class PersonsServiceTests
         mock.Verify(m => m.GetPersonById(It.IsNotNull<Guid>()), Times.Once);
         
         result.Should().BeNull("because the Person does not exist.");
+    }
+    
+    [Fact]
+    public async Task AddPerson_ReturnsGuid()
+    {
+        // Arrange
+        Mock.Get(_contextItems).Setup(m => m.Get(ApiHeaders.TenantId))
+            .Returns("ba5eba11-babe-505a-c0bb-dec1a551f1ed");
+        
+        var mock = Mock.Get(_personRepository);
+        mock.Setup(m => m.AddPerson(It.IsAny<Person>(), It.IsAny<Guid>())).ReturnsAsync(Guid.NewGuid());
+        
+        // Act
+        var personsService = new PersonsService(_personRepository, _contextItems, _logger);
+        var result = await personsService.AddPerson(Fake.Create<DTOs.Person>());
+        
+        // Assert
+        mock.Verify(m => m.AddPerson(It.IsNotNull<Person>(), It.IsNotNull<Guid>()), Times.Once);
+        
+        result.Should().NotBeNull("because the adding person to the repo was successful.");
+    }
+    
+    [Fact]
+    public async Task AddPerson_ReturnsNull()
+    {
+        // Arrange
+        Mock.Get(_contextItems).Setup(m => m.Get(ApiHeaders.TenantId))
+            .Returns("ba5eba11-babe-505a-c0bb-dec1a551f1ed");
+        
+        var mock = Mock.Get(_personRepository);
+        mock.Setup(m => m.AddPerson(It.IsAny<Person>(), It.IsAny<Guid>())).ReturnsAsync((Guid?)null);
+        
+        // Act
+        var personsService = new PersonsService(_personRepository, _contextItems, _logger);
+        var result = await personsService.AddPerson(Fake.Create<DTOs.Person>());
+        
+        // Assert
+        mock.Verify(m => m.AddPerson(It.IsNotNull<Person>(), It.IsNotNull<Guid>()), Times.Once);
+        
+        result.Should().BeNull("because there was a problem adding the person to the repo.");
     }
 }

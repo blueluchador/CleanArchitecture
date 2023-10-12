@@ -7,4 +7,6 @@ public interface IPersonsService
     Task<IEnumerable<Person>> GetPersons();
     
     Task<Person?> GetPersonById(Guid personId);
+
+    Task<Guid?> AddPerson(Person person);
 }

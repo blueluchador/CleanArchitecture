@@ -23,7 +23,7 @@ public class PersonsService : IPersonsService
     public async Task<IEnumerable<Person>> GetPersons()
     {
         var tenantId = Guid.Parse(_contextItems.Get(ApiHeaders.TenantId));
-        _logger.LogInformation("Get all Persons from Person repository.");
+        _logger.LogInformation("Get all Persons from Person repository for tenant '{Tenant}'", tenantId);
 
         var persons = await _personRepository.GetPersons(tenantId);
 
@@ -52,5 +52,17 @@ public class PersonsService : IPersonsService
             FirstName = person.FirstName,
             LastName = person.LastName
         };
+    }
+
+    public async Task<Guid?> AddPerson(Person person)
+    {
+        var tenantId = Guid.Parse(_contextItems.Get(ApiHeaders.TenantId));
+        _logger.LogInformation("Add Person '{Person}' to repository for tenant '{Tenant}'", person, tenantId);
+
+        return await _personRepository.AddPerson(new Domain.Entities.Person
+        {
+            FirstName = person.FirstName,
+            LastName = person.LastName
+        }, tenantId);
     }
 }
