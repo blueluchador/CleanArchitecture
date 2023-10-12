@@ -59,7 +59,7 @@ public class PersonsService : IPersonsService
         var tenantId = Guid.Parse(_contextItems.Get(ApiHeaders.TenantId));
         _logger.LogInformation("Add Person '{Person}' to repository for tenant '{Tenant}'", person, tenantId);
 
-        return await _personRepository.AddPerson(new Domain.Entities.Person
+        return await _personRepository.AddPerson(new PersonEntity
         {
             FirstName = person.FirstName,
             LastName = person.LastName

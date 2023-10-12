@@ -1,0 +1,1 @@
+global using PersonEntity = CleanArchitecture.Domain.Entities.Person;

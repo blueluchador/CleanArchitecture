@@ -5,7 +5,7 @@ using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.TestFixtures;
 using Microsoft.Extensions.Logging;
-using DTOs = CleanArchitecture.Application.DTOs;
+using PersonDTO = CleanArchitecture.Application.DTOs.Person;
 
 namespace CleanArchitecture.Tests.Services;
 
@@ -86,7 +86,7 @@ public class PersonsServiceTests
         
         // Act
         var personsService = new PersonsService(_personRepository, _contextItems, _logger);
-        var result = await personsService.AddPerson(Fake.Create<DTOs.Person>());
+        var result = await personsService.AddPerson(Fake.Create<PersonDTO>());
         
         // Assert
         mock.Verify(m => m.AddPerson(It.IsNotNull<Person>(), It.IsNotNull<Guid>()), Times.Once);
@@ -106,7 +106,7 @@ public class PersonsServiceTests
         
         // Act
         var personsService = new PersonsService(_personRepository, _contextItems, _logger);
-        var result = await personsService.AddPerson(Fake.Create<DTOs.Person>());
+        var result = await personsService.AddPerson(Fake.Create<PersonDTO>());
         
         // Assert
         mock.Verify(m => m.AddPerson(It.IsNotNull<Person>(), It.IsNotNull<Guid>()), Times.Once);
