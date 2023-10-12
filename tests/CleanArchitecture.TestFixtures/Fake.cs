@@ -23,11 +23,6 @@ public static class Fake
         return fixture.CreateMany<T>(count);
     }
 
-    public static T? CreateNull<T>()
-    {
-        return default;
-    }
-
     public static ICustomizationComposer<T> Build<T>()
     {
         var fixture = new Fixture();

@@ -35,7 +35,7 @@ public class HelloWorldServicesTests
     {
         // Arrange
         var mock = Mock.Get(_personRepository);
-        mock.Setup(m => m.GetPersonById(It.IsAny<Guid>())).ReturnsAsync(Fake.CreateNull<Person>());
+        mock.Setup(m => m.GetPersonById(It.IsAny<Guid>())).ReturnsAsync((Person?)null);
         
         // Act
         var helloWorldService = new HelloWorldService(_personRepository, _logger);

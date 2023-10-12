@@ -62,7 +62,7 @@ public class PersonsServiceTests
     {
         // Arrange
         var mock = Mock.Get(_personRepository);
-        mock.Setup(m => m.GetPersonById(It.IsAny<Guid>())).ReturnsAsync(Fake.CreateNull<Person>());
+        mock.Setup(m => m.GetPersonById(It.IsAny<Guid>())).ReturnsAsync((Person?)null);
         
         // Act
         var personsService = new PersonsService(_personRepository, _contextItems, _logger);

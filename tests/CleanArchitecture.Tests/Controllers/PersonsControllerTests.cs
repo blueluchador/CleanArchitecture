@@ -57,7 +57,7 @@ public class PersonsControllerTests
         // Arrange
         var mock = Mock.Get(_personsService);
 
-        mock.Setup(m => m.GetPersonById(It.IsAny<Guid>())).ReturnsAsync(Fake.CreateNull<Person>());
+        mock.Setup(m => m.GetPersonById(It.IsAny<Guid>())).ReturnsAsync((Person?)null);
         
         // Act
         var controller = new PersonsController(_personsService, _helloWorldService);

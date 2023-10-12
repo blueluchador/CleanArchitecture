@@ -60,10 +60,11 @@ public class PersonRepositoryTests
     {
         // Arrange
         var mock = Mock.Get(_objectMapper);
-        
+
+        Person? person = null;
         mock.Setup(m =>
                 m.QuerySingleOrDefaultAsync<Person>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))!
-            .ReturnsAsync(Fake.CreateNull<Person>());
+            .ReturnsAsync(person);
 
         // Act
         var repository = new PersonRepository(_objectMapper, _logger);
