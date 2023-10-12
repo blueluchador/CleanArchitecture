@@ -19,7 +19,6 @@ public class PersonRepository : IPersonRepository
 
     public async Task<IEnumerable<Person>> GetPersons(Guid tenantId)
     {
-        // var tenantUuid = Guid.Parse(_contextItems.Get(ApiHeaders.TenantId));
         _logger.LogInformation("Get Persons from Hello World Database. Tenant ID: '{TenantID}'", tenantId);
 
         var @params = new { tenantUuid = tenantId };
@@ -33,6 +32,11 @@ public class PersonRepository : IPersonRepository
         
         var @params = new { uuid = personId };
 
-        return await _objectMapper.QuerySingleOrDefaultAsync<Person?>(Resource.GetPersonByIdSqlQuery, @params);
+        return await _objectMapper.QuerySingleOrDefaultAsync<Person>(Resource.GetPersonByIdSqlQuery, @params);
+    }
+
+    public Task<Guid?> AddPerson(Person person)
+    {
+        throw new NotImplementedException();
     }
 }

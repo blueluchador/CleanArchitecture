@@ -14,14 +14,14 @@ public abstract class ObjectMapperBase
     }
 
     public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object? param = null,
-        IDbTransaction? transaction = null, int? commandTimeout = null, CommandType? commandType = null)
+        IDbTransaction? transaction = null, int? commandTimeout = null, CommandType? commandType = null) where T : class
     {
         using var conn = await _connectionFactory.CreateConnectionAsync();
         return await conn.QueryAsync<T>(sql, param, transaction, commandTimeout, commandType);
     }
-    
-    public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null,
-        int? commandTimeout = null, CommandType? commandType = null)
+
+    public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object? param = null,
+        IDbTransaction? transaction = null, int? commandTimeout = null, CommandType? commandType = null) where T : class
     {
         using var conn = await _connectionFactory.CreateConnectionAsync();
         return await conn.QuerySingleOrDefaultAsync<T>(sql, param, transaction, commandTimeout, commandType);
