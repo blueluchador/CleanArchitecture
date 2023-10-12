@@ -8,5 +8,5 @@ public interface IPersonRepository
     
     Task<Person?> GetPersonById(Guid personId);
 
-    Task<Guid?> AddPerson(Person person);
+    Task<Guid?> AddPerson(Person person, Guid tenantId);
 }

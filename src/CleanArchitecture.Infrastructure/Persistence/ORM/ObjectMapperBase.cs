@@ -19,6 +19,13 @@ public abstract class ObjectMapperBase
         using var conn = await _connectionFactory.CreateConnectionAsync();
         return await conn.QueryAsync<T>(sql, param, transaction, commandTimeout, commandType);
     }
+    
+    public async Task<T> QuerySingleAsync<T>(string sql, object? param = null,
+        IDbTransaction? transaction = null, int? commandTimeout = null, CommandType? commandType = null) where T : class
+    {
+        using var conn = await _connectionFactory.CreateConnectionAsync();
+        return await conn.QuerySingleAsync<T>(sql, param, transaction, commandTimeout, commandType);
+    }
 
     public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object? param = null,
         IDbTransaction? transaction = null, int? commandTimeout = null, CommandType? commandType = null) where T : class

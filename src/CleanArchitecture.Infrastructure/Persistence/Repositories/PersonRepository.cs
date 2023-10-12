@@ -19,7 +19,7 @@ public class PersonRepository : IPersonRepository
 
     public async Task<IEnumerable<Person>> GetPersons(Guid tenantId)
     {
-        _logger.LogInformation("Get Persons from Hello World Database. Tenant ID: '{TenantID}'", tenantId);
+        _logger.LogInformation("Get Persons from Hello World database. Tenant ID: '{TenantID}'", tenantId);
 
         var @params = new { tenantUuid = tenantId };
 
@@ -28,15 +28,27 @@ public class PersonRepository : IPersonRepository
 
     public async Task<Person?> GetPersonById(Guid personId)
     {
-        _logger.LogInformation("Get Person '{PersonId}' from Hello World Database", personId);
+        _logger.LogInformation("Get Person '{PersonId}' from Hello World database", personId);
         
         var @params = new { uuid = personId };
 
         return await _objectMapper.QuerySingleOrDefaultAsync<Person>(Resource.GetPersonByIdSqlQuery, @params);
     }
 
-    public Task<Guid?> AddPerson(Person person)
+    public async Task<Guid?> AddPerson(Person person, Guid tenantId)
     {
-        throw new NotImplementedException();
+        _logger.LogInformation("Add Person '{Person}' to Hello World database", person);
+
+        var @params = new { firstName = person.FirstName, lastName = person.LastName, tenantId };
+
+        try
+        {
+            return (await _objectMapper.QuerySingleAsync<Person>(Resource.AddPersonSqlQuery, @params)).Uuid;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "An error occured adding '{Person}' to Hello World database", person);
+            return null;
+        }
     }
 }

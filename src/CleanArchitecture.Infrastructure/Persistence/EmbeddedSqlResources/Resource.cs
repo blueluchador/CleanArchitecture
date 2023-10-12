@@ -6,9 +6,11 @@ public static class Resource
 {
     private static readonly Lazy<string> GetPersonsSql = new(() => GetEmbeddedResource("get_persons.sql"));
     private static readonly Lazy<string> GetPersonByIdSql = new(() => GetEmbeddedResource("get_person_by_id.sql"));
+    private static readonly Lazy<string> AddPersonSql = new(() => GetEmbeddedResource("add_person.sql"));
 
     public static string GetPersonsSqlQuery => GetPersonsSql.Value;
     public static string GetPersonByIdSqlQuery => GetPersonByIdSql.Value;
+    public static string AddPersonSqlQuery => AddPersonSql.Value;
     
     private static string GetEmbeddedResource(string fileName)
     {

@@ -32,6 +32,8 @@
     <ItemGroup>
       <EmbeddedResource Include="Persistence\EmbeddedSqlResources\SqlScripts\get_persons.sql" />
       <EmbeddedResource Include="Persistence\EmbeddedSqlResources\SqlScripts\get_person_by_id.sql" />
+      <None Remove="Persistence\EmbeddedSqlResources\SqlScripts\add_person.sql" />
+      <EmbeddedResource Include="Persistence\EmbeddedSqlResources\SqlScripts\add_person.sql" />
     </ItemGroup>
 
 </Project>
