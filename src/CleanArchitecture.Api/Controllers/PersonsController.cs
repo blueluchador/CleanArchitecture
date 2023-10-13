@@ -59,9 +59,13 @@ public class PersonsController : ControllerBase
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<ActionResult<AddPersonResponse>> AddPerson([FromBody] AddPersonRequest request)
+    public async Task<ActionResult<AddPersonResponse>> AddPerson([FromQuery] AddPersonRequest request)
     {
-        var id = await _personsService.AddPerson(request.Person);
+        var id = await _personsService.AddPerson(new Person
+        {
+            FirstName = request.Person.FirstName,
+            LastName = request.Person.LastName
+        });
         if (id == null)
         {
             return StatusCode(500);

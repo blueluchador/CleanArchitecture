@@ -1,9 +1,13 @@
 using System.Net;
+using System.Net.Http.Json;
+using System.Text;
+using CleanArchitecture.Api.Controllers.Requests;
 using CleanArchitecture.Api.Controllers.Responses;
 using CleanArchitecture.Application.DTOs;
 using CleanArchitecture.Domain.Constants;
 using CleanArchitecture.IntegrationTests.Extensions;
 using CleanArchitecture.TestFixtures;
+using Newtonsoft.Json;
 
 namespace CleanArchitecture.IntegrationTests.ApiEndpoints;
 
@@ -49,7 +53,7 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
         var person = await response.ProcessResponse<Person>();
         
         // Assert
-        response.Should().HaveStatusCode(HttpStatusCode.OK, "because the endpoint responded successfully");
+        response.Should().HaveStatusCode(HttpStatusCode.OK, "because the endpoint responded with 200 OK");
         person.Should().NotBeNull("because the endpoint returns a Person object");
 
         person.FirstName.Should().Be(firstName, $"because the Persons first name is '{firstName}'");
@@ -109,5 +113,38 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
         
         // Assert
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest, "because the Tenant ID header is missing");
+    }
+    
+    [Fact]
+    public async Task AddPerson_ReturnsCreated()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        client.DefaultRequestHeaders.Add(ApiHeaders.TenantId, "d0d0d0d0-dada-dada-5a11-c0ffee70ffee");
+    
+        // Act
+        var response = await client.PostAsync("persons",
+            new StringContent(JsonConvert.SerializeObject(new PersonPayload { FirstName = "Gerry" }), Encoding.UTF8,
+                "application/json"));
+        var personResponse = await response.ProcessResponse<AddPersonResponse>();
+        
+        // Assert
+        response.Should().HaveStatusCode(HttpStatusCode.Created, "because the endpoint responded with 201 Created");
+        personResponse.Should().NotBeNull("because the endpoint created a new Person");
+    }
+    
+    [Fact]
+    public async Task AddPerson_ReturnsBadRequest()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        client.DefaultRequestHeaders.Add(ApiHeaders.TenantId, "ba5eba11-babe-505a-c0bb-dec1a551f1ed");
+    
+        // Act
+        var response = await client.PostAsync("persons",
+            new StringContent(JsonConvert.SerializeObject(new { foo = "bar" }), Encoding.UTF8, "application/json"));
+        
+        // Assert
+        response.Should().HaveStatusCode(HttpStatusCode.BadRequest, "because the payload is not a valid Person");
     }
 }
