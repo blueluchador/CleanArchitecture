@@ -1,5 +1,4 @@
 using System.Net;
-using System.Net.Http.Json;
 using System.Text;
 using CleanArchitecture.Api.Controllers.Requests;
 using CleanArchitecture.Api.Controllers.Responses;
