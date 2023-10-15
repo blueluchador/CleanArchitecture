@@ -123,7 +123,7 @@ public class PersonsApiTests : IClassFixture<CustomWebApplicationFactory>
     
         // Act
         var response = await client.PostAsync("persons",
-            new StringContent(JsonConvert.SerializeObject(new PersonPayload { FirstName = "Gerry" }), Encoding.UTF8,
+            new StringContent(JsonConvert.SerializeObject(new PersonPayload { FirstName = "Gerardo" }), Encoding.UTF8,
                 "application/json"));
         var personResponse = await response.ProcessResponse<AddPersonResponse>();
         
